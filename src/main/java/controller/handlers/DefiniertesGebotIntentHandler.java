@@ -24,5 +24,4 @@ public class DefiniertesGebotIntentHandler implements RequestHandler {
                 .withSimpleCard("Beat the Musicmaster", speechText)
                 .build();
     }
-
 }

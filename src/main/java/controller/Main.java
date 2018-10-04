@@ -19,7 +19,7 @@ public class Main extends SkillStreamHandler {
                         new AlleGeboteIntentHandler(),
                         new DefiniertesGebotIntentHandler(),
                         new ZufallsGebotIntentHandler())
-                .withSkillId("amzn1.ask.skill.08b3ba96-965d-4a81-8a13-e7c8fe03a322")
+                .withSkillId("amzn1.ask.skill.60f322c8-0387-4c10-9b39-4418747771c1")
                 .build();
     }
 
