@@ -1,5 +1,5 @@
 # Dieser Skill ist noch in der Initialisierungsphase
-Es soll ein Musikwettbewerb Skill entwickelt werden
+Es soll ein 10 Gebote Skill entwickelt werden
 
 ## Funktionalitäten
 Werden noch beschrieben
