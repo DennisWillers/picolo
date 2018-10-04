@@ -11,11 +11,14 @@ public class Main extends SkillStreamHandler {
         return Skills.standard()
                 .addRequestHandlers(
                         new CancelandStopIntentHandler(),
-                        new DailySongIntentHandler(),
                         new HelpIntentHandler(),
                         new LaunchRequestHandler(),
                         new SessionEndedRequestHandler(),
-                        new FallbackIntentHandler())
+                        new FallbackIntentHandler(),
+
+                        new AlleGeboteIntentHandler(),
+                        new DefiniertesGebotIntentHandler(),
+                        new ZufallsGebotIntentHandler())
                 .withSkillId("amzn1.ask.skill.08b3ba96-965d-4a81-8a13-e7c8fe03a322")
                 .build();
     }

@@ -2,15 +2,19 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>Willers-Skills</groupId>
-  <artifactId>musicmaster</artifactId>
+  <artifactId>10-Gebote</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
-  <name>beat-the-musicmaster</name>
-  <url>http://developer.amazon.com/ask</url>
+  <name>10-Gebote</name>
+  <url>https://github.com/DennisWillers/10-Gebote</url>
   <developers>
     <developer>
       <name>Dennis Willers</name>
       <email>d.willers@gmx.net</email>
+    </developer>
+    <developer>
+      <name>Tim Leuschner</name>
+      <email>tim.leuschner@gmail.de</email>
     </developer>
   </developers>
   <!-- ZU BEARBEITEN

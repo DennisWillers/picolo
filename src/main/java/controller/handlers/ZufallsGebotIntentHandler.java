@@ -9,16 +9,16 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class DailySongIntentHandler implements RequestHandler {
+public class ZufallsGebotIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("DailySong"));
+        return input.matches(intentName("ZufallsGebot"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Es gibt noch keinen täglichen Song";
+        String speechText = "Es gibt noch kein Gebot";
        return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Beat the Musicmaster", speechText)
