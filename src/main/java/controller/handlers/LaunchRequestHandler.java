@@ -23,7 +23,6 @@ public class LaunchRequestHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Beat the Musicmaster", speechText)
-                .withReprompt(speechText)
                 .build();
     }
 
