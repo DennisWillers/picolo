@@ -11,9 +11,11 @@ public class FindGebotController {
         return Text.ZEHN_GEBOTE[index];
     }
 
-    public String getZufallsGebot() {
+    public int getZufallsZahl() {
         int index = (int) Math.round(Math.random() * 10);
         if(index == 10) index = 9;
-        return Text.ZEHN_GEBOTE[index];
+        return index;
     }
+
+
 }
