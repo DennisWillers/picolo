@@ -19,7 +19,7 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Willkommen beim Skillmaster. Wie kann ich deinen Tag versüßen?";
+        String speechText = "Willkommen bei den göttlichen Geboten";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Beat the Musicmaster", speechText)
