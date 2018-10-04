@@ -4,6 +4,7 @@ package main.java.controller.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.controller.intents.GebotController;
 import main.java.model.Intentnamen;
 
 import java.util.Optional;
@@ -19,10 +20,10 @@ public class DefiniertesGebotIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Es gibt noch kein Gebot";
-       return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("Beat the Musicmaster", speechText)
+        GebotController gebotController = new GebotController();
+        return input.getResponseBuilder()
+                .withSpeech(gebotController.getGebotText())
+                .withSimpleCard(gebotController.getGebotTitel(), gebotController.getGebotText())
                 .build();
     }
 }

@@ -4,6 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import main.java.controller.intents.GebotController;
 
 
 import java.util.Optional;
@@ -19,10 +20,10 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Willkommen bei den göttlichen Geboten";
+        GebotController gebotController = new GebotController();
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("Beat the Musicmaster", speechText)
+                .withSpeech(gebotController.getGebotText())
+                .withSimpleCard(gebotController.getGebotTitel(), gebotController.getGebotText())
                 .build();
     }
 
