@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AWSLambdaStateService">
+    <option name="configs">
+      <map>
+        <entry key="10-Gebote">
+          <value>
+            <LambdaConfig>
+              <option name="functionName" value="10-Gebote" />
+              <option name="jarFilePath" value="F:\Programmieren\zehn Gebote\target\10-Gebote-1.0.jar" />
+            </LambdaConfig>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
