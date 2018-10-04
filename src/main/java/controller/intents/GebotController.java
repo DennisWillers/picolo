@@ -1,5 +1,7 @@
 package main.java.controller.intents;
 
+import main.java.controller.service.FindGebotController;
+
 /**
  * Von Dennis Willers (A13A316) am 04.10.2018 erstellt
  */
@@ -9,7 +11,10 @@ public class GebotController {
     private String gebotTitel;
 
     public GebotController(){
-
+        FindGebotController controller = new FindGebotController();
+        this.gebotNr = controller.getZufallsZahl();
+        this.gebotText = controller.getGebotText(this.gebotNr);
+        this.gebotTitel = this.gebotNr + ". Gebot";
     }
 
     public int getGebotNr() {
