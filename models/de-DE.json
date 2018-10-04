@@ -1,100 +1,100 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "zehn gebote",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "ZufallsGebot",
-                    "slots": [],
-                    "samples": [
-                        "welches ist das wichtigste gebot",
-                        "was wollte jesus",
-                        "dem gebot",
-                        "nach einem zufälligen gebot",
-                        "nach einem Gebot"
-                    ]
-                },
-                {
-                    "name": "AlleGebote",
-                    "slots": [],
-                    "samples": [
-                        "welche gebote existieren",
-                        "welche gebote gibt es",
-                        "wie heißen die gebote",
-                        "wie heißen die zehn Gebote"
-                    ]
-                },
-                {
-                    "name": "DefiniertesGebot",
-                    "slots": [
-                        {
-                            "name": "gebotsZahl",
-                            "type": "AMAZON.NUMBER",
-                            "samples": [
-                                "fünf",
-                                "vier",
-                                "drei",
-                                "zwei",
-                                "eins"
-                            ]
-                        }
-                    ],
-                    "samples": [
-                        "wie lautet das {gebotsZahl} gebot",
-                        "{gebotsZahl} gebot",
-                        "nach dem {gebotsZahl} Gebot",
-                        "welches ist das {gebotsZahl} Gebot"
-                    ]
-                }
-            ],
-            "types": []
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "zehn gebote",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
         },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "DefiniertesGebot",
-                    "confirmationRequired": false,
-                    "prompts": {},
-                    "slots": [
-                        {
-                            "name": "gebotsZahl",
-                            "type": "AMAZON.NUMBER",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.1264449198162.1252551750056"
-                            }
-                        }
-                    ]
-                }
-            ]
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
         },
-        "prompts": [
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "ZufallsGebot",
+          "slots": [],
+          "samples": [
+            "welches ist das wichtigste gebot",
+            "was wollte jesus",
+            "dem gebot",
+            "nach einem zufälligen gebot",
+            "nach einem Gebot"
+          ]
+        },
+        {
+          "name": "AlleGebote",
+          "slots": [],
+          "samples": [
+            "welche gebote existieren",
+            "welche gebote gibt es",
+            "wie heißen die gebote",
+            "wie heißen die zehn Gebote"
+          ]
+        },
+        {
+          "name": "DefiniertesGebot",
+          "slots": [
             {
-                "id": "Elicit.Slot.1264449198162.1252551750056",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Sag mir eine Zahl"
-                    }
-                ]
+              "name": "gebotsZahl",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "fünf",
+                "vier",
+                "drei",
+                "zwei",
+                "eins"
+              ]
             }
+          ],
+          "samples": [
+            "wie lautet das {gebotsZahl} gebot",
+            "{gebotsZahl} gebot",
+            "nach dem {gebotsZahl} Gebot",
+            "welches ist das {gebotsZahl} Gebot"
+          ]
+        }
+      ],
+      "types": []
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "DefiniertesGebot",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "gebotsZahl",
+              "type": "AMAZON.NUMBER",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1264449198162.1252551750056"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1264449198162.1252551750056",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Sag mir eine Zahl"
+          }
         ]
-    }
+      }
+    ]
+  }
 }
