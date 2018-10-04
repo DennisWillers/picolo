@@ -3,6 +3,7 @@ package main.java.controller.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import main.java.model.Intentnamen;
 
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.FallbackIntent"));
+        return input.matches(intentName(Intentnamen.FALLBACKINTENT));
     }
 
     @Override
