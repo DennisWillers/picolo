@@ -6,6 +6,16 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 target/
+target/
+.idea/
+.settings/
+*.toc
+*.log
+*.synctex.gz
+*.aux
+*.iml
+*.class
+*.pdf
 
 # User-specific stuff
 .idea/**/workspace.xml
