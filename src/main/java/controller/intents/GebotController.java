@@ -13,7 +13,8 @@ public class GebotController {
     public GebotController(){
         FindGebotController controller = new FindGebotController();
         this.gebotNr = controller.getZufallsZahl();
-        this.gebotText = controller.getGebotText(this.gebotNr);
+        //this.gebotText = controller.getGebotText(this.gebotNr);
+        this.gebotText = controller.getAlleGebote();
         this.gebotTitel = this.gebotNr + ". Gebot";
     }
 

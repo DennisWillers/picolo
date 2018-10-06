@@ -17,5 +17,12 @@ public class FindGebotController {
         return index;
     }
 
+    public String getAlleGebote() {
+        StringBuilder sb = new StringBuilder();
+        for (String s : Text.ZEHN_GEBOTE) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
 
 }
