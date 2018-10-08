@@ -14,4 +14,6 @@ public interface Text {
                             "8. Du sollst nicht falsch Zeugnis reden wider deinen Nächsten. ",
                             "9. Du sollst nicht begehren deines Nächsten Haus. ",
                             "10. Du sollst nicht begehren deines Nächsten Weib, Knecht, Magd, Vieh noch alles, was sein ist. "};
+
+    String WELCHES_GEBOT = "Welches Gebot möchtest du wissen?";
 }

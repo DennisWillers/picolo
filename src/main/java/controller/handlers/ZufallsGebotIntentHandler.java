@@ -5,6 +5,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import main.java.controller.intents.DefiniertesGebotController;
+import main.java.controller.intents.ZufallsGebotController;
 import main.java.model.Intentnamen;
 
 import java.util.Optional;
@@ -20,10 +21,10 @@ public class ZufallsGebotIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        DefiniertesGebotController definiertesGebotController = new DefiniertesGebotController();
+        ZufallsGebotController zufallsGebotController = new ZufallsGebotController();
         return input.getResponseBuilder()
-                .withSpeech(definiertesGebotController.getGebotText())
-                .withSimpleCard(definiertesGebotController.getGebotTitel(), definiertesGebotController.getGebotText())
+                .withSpeech(zufallsGebotController.getGebotText())
+                .withSimpleCard(zufallsGebotController.getGebotTitel(), zufallsGebotController.getGebotText())
                 .build();
     }
 
