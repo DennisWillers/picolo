@@ -5,16 +5,15 @@ import main.java.controller.service.FindGebotController;
 /**
  * Von Dennis Willers (A13A316) am 04.10.2018 erstellt
  */
-public class GebotController {
+public class DefiniertesGebotController {
     private int gebotNr;
     private String gebotText;
     private String gebotTitel;
 
-    public GebotController(){
+    public DefiniertesGebotController(){
         FindGebotController controller = new FindGebotController();
         this.gebotNr = controller.getZufallsZahl();
-        //this.gebotText = controller.getGebotText(this.gebotNr);
-        this.gebotText = controller.getAlleGebote();
+        this.gebotText = controller.getGebotText(this.gebotNr);
         this.gebotTitel = this.gebotNr + ". Gebot";
     }
 

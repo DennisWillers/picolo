@@ -4,7 +4,8 @@ package main.java.controller.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import main.java.controller.intents.GebotController;
+import main.java.controller.intents.AlleGeboteController;
+import main.java.controller.intents.DefiniertesGebotController;
 import main.java.model.Intentnamen;
 
 import java.util.Optional;
@@ -20,10 +21,10 @@ public class AlleGeboteIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        GebotController gebotController = new GebotController();
+        AlleGeboteController alleGeboteController = new AlleGeboteController();
         return input.getResponseBuilder()
-                .withSpeech(gebotController.getGebotText())
-                .withSimpleCard(gebotController.getGebotTitel(), gebotController.getGebotText())
+                .withSpeech(alleGeboteController.getGebotText())
+                .withSimpleCard(alleGeboteController.getGebotTitel(), alleGeboteController.getGebotText())
                 .build();
     }
 
