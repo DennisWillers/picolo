@@ -2,12 +2,13 @@ package main.java.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.LaunchRequest;
-import com.amazon.ask.model.Response;
-import main.java.controller.intents.DefiniertesGebotController;
-import main.java.controller.intents.ZufallsGebotController;
+import com.amazon.ask.model.*;
+import main.java.view.Card;
+import main.java.view.Text;
 
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
@@ -21,10 +22,14 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        ZufallsGebotController zufallsGebotController = new ZufallsGebotController();
+        /*Map<String, Object> slots = new HashMap<>();
+        slots.putAll(input.getAttributesManager().getSessionAttributes());*/
+
+
         return input.getResponseBuilder()
-                .withSpeech(zufallsGebotController.getGebotText())
-                .withSimpleCard(zufallsGebotController.getGebotTitel(), zufallsGebotController.getGebotText())
+                .withSpeech(Text.WELCHES_GEBOT)
+                .withSimpleCard(Card.TITEL, Text.WELCHES_GEBOT)
+                .withReprompt(Text.WELCHES_GEBOT)
                 .build();
     }
 

@@ -23,6 +23,7 @@
           "name": "ZufallsGebot",
           "slots": [],
           "samples": [
+            "zufall",
             "welches ist das wichtigste gebot",
             "was wollte jesus",
             "dem gebot",
@@ -34,6 +35,7 @@
           "name": "AlleGebote",
           "slots": [],
           "samples": [
+            "alle",
             "welche gebote existieren",
             "welche gebote gibt es",
             "wie heißen die gebote",
@@ -56,6 +58,18 @@
             }
           ],
           "samples": [
+            "zehntes",
+            "neuntes",
+            "achtes",
+            "siebtes",
+            "sechstes",
+            "fünftes",
+            "viertes",
+            "drittes",
+            "zweites",
+            "erstes",
+            "{gebotsZahl} tes",
+            "{gebotsZahl}",
             "wie lautet das {gebotsZahl} gebot",
             "{gebotsZahl} gebot",
             "nach dem {gebotsZahl} Gebot",

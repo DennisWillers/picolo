@@ -8,7 +8,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import main.java.controller.intents.DefiniertesGebotController;
 import main.java.model.Intentnamen;
-import main.java.model.Slot;
+import main.java.model.Parameter;
 import main.java.view.Text;
 
 import java.util.HashMap;
@@ -29,14 +29,14 @@ public class DefiniertesGebotIntentHandler implements RequestHandler {
         Map<String, Object> slots = new HashMap<>();
         slots.putAll(input.getAttributesManager().getRequestAttributes());
         Intent intent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
-        if(intent.getSlots().get(Slot.GEBOTSZAHL).getValue() == null || intent.getSlots().get(Slot.GEBOTSZAHL).getValue().equals("?")){
+        if(intent.getSlots().get(Parameter.GEBOTSZAHL).getValue() == null || intent.getSlots().get(Parameter.GEBOTSZAHL).getValue().equals("?")){
             return input.getResponseBuilder()
                     .withSpeech(Text.WELCHES_GEBOT)
-                    .addElicitSlotDirective(Slot.GEBOTSZAHL, intent)
+                    .addElicitSlotDirective(Parameter.GEBOTSZAHL, intent)
                     .build();
         }
         else{
-            String value = intent.getSlots().get(Slot.GEBOTSZAHL).getValue();
+            String value = intent.getSlots().get(Parameter.GEBOTSZAHL).getValue();
             int gebotNr = Integer.parseInt(value);
             DefiniertesGebotController definiertesGebotController = new DefiniertesGebotController(--gebotNr);
             return input.getResponseBuilder()

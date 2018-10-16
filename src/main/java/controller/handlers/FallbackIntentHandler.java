@@ -4,6 +4,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import main.java.model.Intentnamen;
+import main.java.view.Card;
+import main.java.view.Text;
 
 import java.util.Optional;
 
@@ -21,10 +23,10 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Das ist der Fallback Intent!";
+        String speechText = Text.FALLBACK;
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("Beat the Musicmaster", speechText)
+                .withSimpleCard(Card.TITEL, speechText)
                 .withReprompt(speechText)
                 .build();
     }
