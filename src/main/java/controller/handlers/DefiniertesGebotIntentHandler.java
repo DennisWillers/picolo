@@ -31,7 +31,7 @@ public class DefiniertesGebotIntentHandler implements RequestHandler {
         Intent intent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         if(intent.getSlots().get(Parameter.GEBOTSZAHL).getValue() == null || intent.getSlots().get(Parameter.GEBOTSZAHL).getValue().equals("?")){
             return input.getResponseBuilder()
-                    .withSpeech(Text.WELCHES_GEBOT)
+                    .withSpeech(Text.WELCHES_GEBOT_SSML)
                     .addElicitSlotDirective(Parameter.GEBOTSZAHL, intent)
                     .build();
         }
@@ -40,7 +40,7 @@ public class DefiniertesGebotIntentHandler implements RequestHandler {
             int gebotNr = Integer.parseInt(value);
             DefiniertesGebotController definiertesGebotController = new DefiniertesGebotController(--gebotNr);
             return input.getResponseBuilder()
-                    .withSpeech(definiertesGebotController.getGebotText())
+                    .withSpeech(definiertesGebotController.getGebotTextSSML())
                     .withSimpleCard(definiertesGebotController.getGebotTitel(), definiertesGebotController.getGebotText())
                     .build();
         }

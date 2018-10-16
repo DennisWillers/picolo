@@ -23,11 +23,10 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = Text.FALLBACK;
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard(Card.TITEL, speechText)
-                .withReprompt(speechText)
+                .withSpeech(Text.FALLBACK_SSML)
+                .withSimpleCard(Card.TITEL, Text.FALLBACK)
+                .withReprompt(Text.FALLBACK_SSML)
                 .build();
     }
 

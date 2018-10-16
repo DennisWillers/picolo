@@ -19,10 +19,9 @@ public class CancelandStopIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = Text.STOP;
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard(Card.TITEL, speechText)
+                .withSpeech(Text.STOP_SSML)
+                .withSimpleCard(Card.TITEL, Text.STOP)
                 .build();
     }
 }

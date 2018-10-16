@@ -27,9 +27,9 @@ public class LaunchRequestHandler implements RequestHandler {
 
 
         return input.getResponseBuilder()
-                .withSpeech(Text.WELCHES_GEBOT)
+                .withSpeech(Text.WELCHES_GEBOT_SSML)
                 .withSimpleCard(Card.TITEL, Text.WELCHES_GEBOT)
-                .withReprompt(Text.WELCHES_GEBOT)
+                .withReprompt(Text.WELCHES_GEBOT_SSML)
                 .build();
     }
 

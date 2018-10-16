@@ -8,11 +8,13 @@ import main.java.view.Card;
  */
 public class AlleGeboteController {
     private String gebotText;
+    private String gebotTextSSML;
     private String gebotTitel;
 
     public AlleGeboteController(){
         FindGebotController controller = new FindGebotController();
         this.gebotText = controller.getAlleGebote();
+        this.gebotTextSSML = controller.getAlleGeboteSSML();
         this.gebotTitel = Card.TITEL;
     }
 
@@ -30,5 +32,13 @@ public class AlleGeboteController {
 
     public void setGebotTitel(String gebotTitel) {
         this.gebotTitel = gebotTitel;
+    }
+
+    public String getGebotTextSSML() {
+        return gebotTextSSML;
+    }
+
+    public void setGebotTextSSML(String gebotTextSSML) {
+        this.gebotTextSSML = gebotTextSSML;
     }
 }

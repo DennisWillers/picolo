@@ -23,7 +23,7 @@ public class ZufallsGebotIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         ZufallsGebotController zufallsGebotController = new ZufallsGebotController();
         return input.getResponseBuilder()
-                .withSpeech(zufallsGebotController.getGebotText())
+                .withSpeech(zufallsGebotController.getGebotTextSSML())
                 .withSimpleCard(zufallsGebotController.getGebotTitel(), zufallsGebotController.getGebotText())
                 .build();
     }

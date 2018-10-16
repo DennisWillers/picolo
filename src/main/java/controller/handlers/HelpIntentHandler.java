@@ -21,11 +21,10 @@ public class HelpIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = Text.HELP;
         return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard(Card.TITEL, speechText)
-                .withReprompt(speechText)
+                .withSpeech(Text.HELP_SSML)
+                .withSimpleCard(Card.TITEL, Text.HELP)
+                .withReprompt(Text.HELP_SSML)
                 .build();
     }
 }

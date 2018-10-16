@@ -11,6 +11,10 @@ public class FindGebotController {
         return Text.ZEHN_GEBOTE[index];
     }
 
+    public String getGebotTextSSML(int index){
+        return Text.ZEHN_GEBOTE_SSML[index];
+    }
+
     public int getZufallsZahl() {
         int index = (int) Math.round(Math.random() * 10);
         if(index == 10) index = 9;
@@ -25,4 +29,11 @@ public class FindGebotController {
         return sb.toString();
     }
 
+    public String getAlleGeboteSSML() {
+        StringBuilder sb = new StringBuilder();
+        for (String s : Text.ZEHN_GEBOTE_SSML) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
 }

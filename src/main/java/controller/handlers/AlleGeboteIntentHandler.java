@@ -23,7 +23,7 @@ public class AlleGeboteIntentHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         AlleGeboteController alleGeboteController = new AlleGeboteController();
         return input.getResponseBuilder()
-                .withSpeech(alleGeboteController.getGebotText())
+                .withSpeech(alleGeboteController.getGebotTextSSML())
                 .withSimpleCard(alleGeboteController.getGebotTitel(), alleGeboteController.getGebotText())
                 .build();
     }
