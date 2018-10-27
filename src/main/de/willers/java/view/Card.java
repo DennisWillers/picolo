@@ -1,4 +1,4 @@
-package main.java.view;
+package main.de.willers.java.view;
 
 /**
  * Von Dennis Willers (A13A316) am 04.10.2018 erstellt

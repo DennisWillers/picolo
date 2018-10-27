@@ -1,14 +1,11 @@
-package main.java.controller.handlers;
+package main.de.willers.java.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.*;
-import main.java.view.Card;
-import main.java.view.Text;
+import main.de.willers.java.view.Text;
 
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
@@ -27,8 +24,8 @@ public class LaunchRequestHandler implements RequestHandler {
 
 
         return input.getResponseBuilder()
-                .withSpeech(Text.WELCHES_GEBOT_SSML)
-                .withReprompt(Text.WELCHES_GEBOT_SSML)
+                .withSpeech(Text.PICOLO_START)
+                .withReprompt(Text.PICOLO_START)
                 .build();
     }
 

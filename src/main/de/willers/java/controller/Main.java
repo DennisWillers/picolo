@@ -1,9 +1,10 @@
-package main.java.controller;
+package main.de.willers.java.controller;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.Skills;
 import com.amazon.ask.SkillStreamHandler;
-import main.java.controller.handlers.*;
+import main.de.willers.java.controller.handlers.*;
+import main.de.willers.java.model.Parameter;
 
 public class Main extends SkillStreamHandler {
 
@@ -14,12 +15,8 @@ public class Main extends SkillStreamHandler {
                         new HelpIntentHandler(),
                         new LaunchRequestHandler(),
                         new SessionEndedRequestHandler(),
-                        new FallbackIntentHandler(),
-
-                        new AlleGeboteIntentHandler(),
-                        new DefiniertesGebotIntentHandler(),
-                        new ZufallsGebotIntentHandler())
-                .withSkillId("amzn1.ask.skill.60f322c8-0387-4c10-9b39-4418747771c1")
+                        new FallbackIntentHandler())
+                .withSkillId(Parameter.SKILL_ID)
                 .build();
     }
 

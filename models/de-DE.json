@@ -1,114 +1,43 @@
 {
-  "interactionModel": {
-    "languageModel": {
-      "invocationName": "zehn gebote",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        },
-        {
-          "name": "ZufallsGebot",
-          "slots": [],
-          "samples": [
-            "zufall",
-            "welches ist das wichtigste gebot",
-            "was wollte jesus",
-            "dem gebot",
-            "nach einem zufälligen gebot",
-            "nach einem Gebot"
-          ]
-        },
-        {
-          "name": "AlleGebote",
-          "slots": [],
-          "samples": [
-            "alle",
-            "welche gebote existieren",
-            "welche gebote gibt es",
-            "wie heißen die gebote",
-            "wie heißen die zehn Gebote"
-          ]
-        },
-        {
-          "name": "DefiniertesGebot",
-          "slots": [
-            {
-              "name": "gebotsZahl",
-              "type": "AMAZON.NUMBER",
-              "samples": [
-                "fünf",
-                "vier",
-                "drei",
-                "zwei",
-                "eins"
-              ]
-            }
-          ],
-          "samples": [
-            "zehntes",
-            "neuntes",
-            "achtes",
-            "siebtes",
-            "sechstes",
-            "fünftes",
-            "viertes",
-            "drittes",
-            "zweites",
-            "erstes",
-            "{gebotsZahl} tes",
-            "{gebotsZahl}",
-            "wie lautet das {gebotsZahl} gebot",
-            "{gebotsZahl} gebot",
-            "nach dem {gebotsZahl} Gebot",
-            "welches ist das {gebotsZahl} Gebot"
-          ]
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "picolo",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "StartGameIntent",
+                    "slots": [
+                        {
+                            "name": "AnzahlSpieler",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "starte Trinkspiel",
+                        "starte Spiel",
+                        "los gehts",
+                        "neues Game",
+                        "starte ein Spiel",
+                        "nach einem neuen Spiel"
+                    ]
+                }
+            ],
+            "types": []
         }
-      ],
-      "types": []
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "DefiniertesGebot",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "gebotsZahl",
-              "type": "AMAZON.NUMBER",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.1264449198162.1252551750056"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    "prompts": [
-      {
-        "id": "Elicit.Slot.1264449198162.1252551750056",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Sag mir eine Zahl"
-          }
-        ]
-      }
-    ]
-  }
+    }
 }
