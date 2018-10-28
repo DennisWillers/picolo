@@ -1,0 +1,58 @@
+[
+  {
+    "type": "CHALLENGE",
+    "template": "{1}, wenn deine Füße kleiner sind, als die von {0}, trink 2 Schlücke, ansonsten verteil sie"
+  },
+  {
+    "type": "GAME",
+    "template": "{2} beginnt mit \"Ich packe meinen Koffer...\". Der/die Erste, der/die einen Fehler macht, trinkt 4 Schlücke"
+  },
+  {
+    "type": "GAME",
+    "template": "Lieber ein ungewöhnliches Haus an einenm gewöhnlichen Ort haben oder anders herum? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlücke"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "{1}, du musst entscheiden: wer von {0} und {2} ist deiner Meinung nach der beliebteste Spieler? Dieser Spieler verteilt 2 Schlücke"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Trink 4 Schlücke, wenn du lieber eine Katze als einen Hund hättest"
+  },
+  {
+    "type": "GAME",
+    "template": "\"Alles, was die Schildkröte Franklin machen kann\", derjenige, der etwas wiederholt oder nichts mehr weiß, trinkt 4 Schlücke. {1} beginnt"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle, die blaue Augen haben, trinken 1 Schlücke"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle, die Angst vor Spinnen haben, trinken 1 Schlücke"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle Haie, die in der Finanzbranche arbeiten, trinken 2 Schlücke"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "{0}, wähle, wer 1 Schlücke aus deinem Glas trinkt"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "{1} gib {0} eine Aufgaben, wenn er/sie diese macht, darf er/sie 4 Schlücke verteilen"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle Fußballer trinken 2 Schlücke!"
+  },
+  {
+    "type": "EX",
+    "template": "{2}, Entscheide, ob {1} oder {0} sein Glas auf EX trinken soll"
+  },
+  {
+    "type": "GAME",
+    "template": "Themenspiel und 4 Schlücke für den Verlierer: \"Aufgaben im Haushalt\", {1} beginnt"
+  }
+]
