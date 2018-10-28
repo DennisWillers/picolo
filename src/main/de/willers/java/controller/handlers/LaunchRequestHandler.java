@@ -19,8 +19,6 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        /*Map<String, Object> slots = new HashMap<>();
-        slots.putAll(input.getAttributesManager().getSessionAttributes());*/
 
 
         return input.getResponseBuilder()
