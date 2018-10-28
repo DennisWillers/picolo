@@ -5,5 +5,5 @@ package main.de.willers.java.model;
  */
 public interface Parameter {
     String SKILL_ID = "amzn1.ask.skill.a905e116-40c1-42f3-8ce8-740d9ff39370";
-    String GEBOTSZAHL = "gebotsZahl";
+    String ANZAHL_SPIELER = "AnzahlSpieler";
 }

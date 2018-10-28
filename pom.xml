@@ -2,27 +2,17 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>Willers-Skills</groupId>
-  <artifactId>10-Gebote</artifactId>
+  <artifactId>Picolo</artifactId>
   <packaging>jar</packaging>
   <version>1.0</version>
-  <name>10-Gebote</name>
-  <url>https://github.com/DennisWillers/10-Gebote</url>
+  <name>Picolo</name>
+  <url>https://github.com/DennisWillers/Picolo</url>
   <developers>
     <developer>
       <name>Dennis Willers</name>
       <email>d.willers@gmx.net</email>
     </developer>
-    <developer>
-      <name>Tim Leuschner</name>
-      <email>tim.leuschner@gmail.de</email>
-    </developer>
   </developers>
-  <!-- ZU BEARBEITEN
-  <scm>
-    <connection>scm:git:https://github.com/amzn/alexa-skills-kit-java.git</connection>
-    <developerConnection>scm:git:https://github.com/amzn/alexa-skills-kit-java.git</developerConnection>
-    <url>https://github.com/amzn/alexa-skills-kit-java.git</url>
-  </scm>-->
 
   <dependencies>
     <dependency>

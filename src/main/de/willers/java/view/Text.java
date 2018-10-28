@@ -9,11 +9,14 @@ public interface Text {
     String STOP          = "Gott ist mit dir! ";
     String FALLBACK      = "Leider konnte der Herr dich nicht verstehen ";
 
-
+    String PICOLO_START = "Willkommen bei Picolo! Möchtest du ein neues Spiel starten?";
+    String[] ANZAHL_SPIELER = {
+            "Wie viele Spieler spielen mit?",
+            "Nenne mir die Anzahl der teilnehmenden Spieler",
+            "Wie viele Spieler gibt es heute?"
+            };
 
     //SSML Aussprache
-
-    String PICOLO_START = "Willkommen bei Picolo! Möchtest du ein neues Spiel starten?";
 
     /**TODO
      * SSML Text bearbeiten
