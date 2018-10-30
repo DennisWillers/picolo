@@ -9,7 +9,7 @@
   },
   {
     "type": "GAME",
-    "template": "Lieber ein ungewöhnliches Haus an einenm gewöhnlichen Ort haben oder anders herum? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlücke"
+    "template": "Lieber ein ungewöhnliches Haus an einem gewöhnlichen Ort haben oder anders herum? Stimmt alle gleichzeitig ab, die Verlierer trinken 2 Schlücke"
   },
   {
     "type": "CHALLENGE",
@@ -25,11 +25,11 @@
   },
   {
     "type": "CHALLENGE",
-    "template": "Alle, die blaue Augen haben, trinken 1 Schlücke"
+    "template": "Alle, die blaue Augen haben, trinken 1 Schluck"
   },
   {
     "type": "CHALLENGE",
-    "template": "Alle, die Angst vor Spinnen haben, trinken 1 Schlücke"
+    "template": "Alle, die Angst vor Spinnen haben, trinken 1 Schluck"
   },
   {
     "type": "CHALLENGE",

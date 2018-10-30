@@ -15,6 +15,11 @@ public interface Text {
             "Nenne mir die Anzahl der teilnehmenden Spieler",
             "Wie viele Spieler gibt es heute?"
             };
+    String[] SPIELER_NAME_FRAGEN = {
+            "Nenne mir deinen Namen Spieler ",
+            "Wie heißt du, Spieler ",
+            "Sag mir bitte deinen Namen Spieler "
+    };
 
     //SSML Aussprache
 
