@@ -1,4 +1,4 @@
-package main.de.willers.java.controller.handlers;
+package de.willers.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;

@@ -1,10 +1,10 @@
-package main.de.willers.java.controller;
+package de.willers.controller;
 
 import com.amazon.ask.Skill;
 import com.amazon.ask.Skills;
 import com.amazon.ask.SkillStreamHandler;
-import main.de.willers.java.controller.handlers.*;
-import main.de.willers.java.model.Parameter;
+import de.willers.controller.handlers.*;
+import de.willers.model.Parameter;
 
 public class Main extends SkillStreamHandler {
 

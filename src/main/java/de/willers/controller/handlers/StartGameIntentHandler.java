@@ -1,13 +1,16 @@
-package main.de.willers.java.controller.handlers;
+package de.willers.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
-import main.de.willers.java.model.Intentnamen;
-import main.de.willers.java.model.Parameter;
-import main.de.willers.java.view.Text;
+import de.willers.controller.picolo.Challenge;
+import de.willers.controller.picolo.ChallengeMaster;
+import de.willers.model.Intentnamen;
+import de.willers.model.Parameter;
+import de.willers.view.Card;
+import de.willers.view.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,16 +30,17 @@ public class StartGameIntentHandler implements RequestHandler
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        //Get Session und Request Attribute
+        Map<String,Object> sessionAttribute = getSessionAttributes(input);
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         //Frage nach der Anzahl der Spieler
-        if (requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) {
+        if((requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) && sessionAttribute.get(Parameter.ANZAHL_SPIELER) == null){
+        //if (requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) {
             System.out.println("Ermittle Anzahl Spieler");
             return frageAnzahlSpieler(input,requestIntent);
         }
         else {
             System.out.println("SessionAttribute Zweig");
-            //Get Session Attribute
-            Map<String,Object> sessionAttribute = getSessionAttributes(input);
             //Frage nach den Namen der Spieler
 
             //Prüfe das sessionAttribut nicht leer ist
@@ -54,7 +58,7 @@ public class StartGameIntentHandler implements RequestHandler
                 System.out.println("players = "+players);
 
                 //Prüfe ob es so viele Namen wie Spieler gibt
-                if (++zaehleSpieler != players){
+                if (++zaehleSpieler < players){
                     System.out.println("ZahleSpieler != Players Zweig");
                     //Nummer des neuen Spielers ermitteln
                     int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
@@ -64,7 +68,7 @@ public class StartGameIntentHandler implements RequestHandler
                     input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
                     return frageSpielerNamen(input,neuerSpieler+2,requestIntent);
                 }
-                else{
+                else if(zaehleSpieler==players){
                     System.out.println("ELSE Zweig ZahleSpieler != Players Zweig");
                     input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
                 }
@@ -76,7 +80,9 @@ public class StartGameIntentHandler implements RequestHandler
                 return frageSpielerNamen(input,1,requestIntent);
             }
         }
-        return ermittleNaechsteAktion(input,requestIntent);
+        sessionAttribute = setSpielcounter(sessionAttribute);
+        input.getAttributesManager().setSessionAttributes(sessionAttribute);
+        return ermittleNaechsteAktion(input,sessionAttribute);
     }
 
     //*************
@@ -159,6 +165,46 @@ public class StartGameIntentHandler implements RequestHandler
         return input;
     }
 
+    private Map<String,Object> setSpielcounter(Map<String,Object> sessionAttribute){
+        if (sessionAttribute.get(Parameter.SPIELCOUNTER) == null) {
+            sessionAttribute.put(Parameter.SPIELCOUNTER, 0);
+        } else {
+            Object value = sessionAttribute.get(Parameter.SPIELCOUNTER);
+            int counter = (int) value+1;
+            sessionAttribute.replace(Parameter.SPIELCOUNTER, counter);
+        }
+        return  sessionAttribute;
+    }
+
+    private int getSpielcounter (Map<String,Object> sessionAttribute){
+        return (int) sessionAttribute.get(Parameter.SPIELCOUNTER);
+    }
+
+    private Optional<Response> ermittleNaechsteAktion(HandlerInput input, Map<String,Object> sessionAttribute){
+        try {
+            System.out.println("ChallengeMaster init");
+            ChallengeMaster master = ChallengeMaster.loadFromFile("blueprint.json");
+            System.out.println("String players init");
+            String[] players = readPlayers(sessionAttribute);
+            System.out.println("Get Challenge");
+            Challenge challenge = master.getChallenge(players);
+            String card = challenge.toString();
+            String antwort = "<prosody rate=\"slow\">"+challenge.toString()+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> "+"<break time=\"10s\"/> " + "</prosody>";
+            String start = "";
+            if(getSpielcounter(sessionAttribute) == 0){
+                start = Text.ERSTE_ANWEISUNG ;
+            }
+            return neueChallenge(input,start+antwort,card,sessionAttribute);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return fehlerNachricht(input);
+        }
+    }
+
+    /*
+     * RESPONSE MÖGLICHKEITEN
+     */
+
     private Optional<Response> frageAnzahlSpieler(HandlerInput input, Intent requestIntent){
         return input.getResponseBuilder()
                 .withSpeech(randomPlayerAnswer())
@@ -173,12 +219,20 @@ public class StartGameIntentHandler implements RequestHandler
                 .build();
     }
 
-    private Optional<Response> ermittleNaechsteAktion(HandlerInput input, Intent requestIntent){
-        String value = requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue();
-        int gebotNr = Integer.parseInt(value);
+
+    private Optional<Response> neueChallenge(HandlerInput input, String antwort, String card, Map<String,Object> sessionAttribute){
         return input.getResponseBuilder()
-                .withSpeech(gebotNr + "")
-                .withSimpleCard(gebotNr + "", gebotNr + "")
+                .withSpeech(antwort)
+                .withSimpleCard(Card.CHALLENGE, card)
+                .withReprompt(Text.NAECHSTE_AUFGABE)
+                .build();
+    }
+
+    private Optional<Response> fehlerNachricht (HandlerInput input){
+        String fehler = "Es ist ein Fehler passiert";
+        return input.getResponseBuilder()
+                .withSpeech(fehler)
+                .withSimpleCard("Fehler", fehler)
                 .build();
     }
 }

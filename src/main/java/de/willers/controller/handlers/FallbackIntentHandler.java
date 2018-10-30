@@ -1,11 +1,11 @@
-package main.de.willers.java.controller.handlers;
+package de.willers.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import main.de.willers.java.model.Intentnamen;
-import main.de.willers.java.view.Card;
-import main.de.willers.java.view.Text;
+import de.willers.model.Intentnamen;
+import de.willers.view.Card;
+import de.willers.view.Text;
 
 import java.util.Optional;
 

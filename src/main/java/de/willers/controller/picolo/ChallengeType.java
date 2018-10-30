@@ -1,4 +1,4 @@
-package main.de.willers.java.controller.picolo;
+package de.willers.controller.picolo;
 
 /**
  * @author Simon

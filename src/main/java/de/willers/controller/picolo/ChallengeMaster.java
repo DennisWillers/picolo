@@ -1,4 +1,4 @@
-package main.de.willers.java.controller.picolo;
+package de.willers.controller.picolo;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -8,7 +8,6 @@ import java.io.FileReader;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
-import java.util.stream.Stream;
 
 /**
  * @author Simon
@@ -24,9 +23,13 @@ public class ChallengeMaster {
     }
 
     public static ChallengeMaster loadFromFile(String file) throws Exception {
+        System.out.println("Parser");
         JSONParser parser = new JSONParser();
+        System.out.println("ReadTest");
+        System.out.println("JsonArray FileReader");
         JSONArray a = (JSONArray) parser.parse(new FileReader(file));
 
+        System.out.println("Blueprint");
         Blueprint[] blueprints = new Blueprint[a.size()];
         Iterator<JSONObject> iterator = a.iterator();
         for (int i = 0; iterator.hasNext(); i++) {
@@ -63,14 +66,14 @@ public class ChallengeMaster {
     }
 
     // just a simple test
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
-            ChallengeMaster master = loadFromFile("./blueprint.json");
+            ChallengeMaster master = loadFromFile("./src/main/resources/blueprint.json");
             for (int i = 0; i < 10; i++)
                 System.out.println(master.getChallenge(new String[]{"Simon", "Dennis", "Daniel", "Lucie"}).toString());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }

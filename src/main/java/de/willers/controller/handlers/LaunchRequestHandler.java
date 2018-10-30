@@ -1,9 +1,9 @@
-package main.de.willers.java.controller.handlers;
+package de.willers.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.*;
-import main.de.willers.java.view.Text;
+import de.willers.view.Text;
 
 
 import java.util.Optional;
