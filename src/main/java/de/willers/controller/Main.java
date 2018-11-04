@@ -17,7 +17,8 @@ public class Main extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),
                         new FallbackIntentHandler(),
 
-                        new StartGameIntentHandler())
+                        new StartGameIntentHandler(),
+                        new WiederholeIntentHandler())
                 .withSkillId(Parameter.SKILL_ID)
                 .build();
     }

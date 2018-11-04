@@ -12,6 +12,9 @@
       <name>Dennis Willers</name>
       <email>d.willers@gmx.net</email>
     </developer>
+    <developer>
+      <name>Simon Niedermayr</name>
+    </developer>
   </developers>
 
   <dependencies>

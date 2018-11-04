@@ -22,6 +22,7 @@ public interface Text {
     };
     String NAECHSTE_AUFGABE = "Wollt ihr die nächste Aufgabe Wissen? ";
     String ERSTE_ANWEISUNG = "Alles klar, Los geht´s! ";
+    String WIEDERHOLEN_FEHLER = "Das Spiel wurde noch nicht gestartet. Deswegen kann ich nichts wiederholen. Bitte starte vorher das Spiel. ";
 
     //SSML Aussprache
 
@@ -30,5 +31,5 @@ public interface Text {
      */
     String HELP_SSML          = "Sage 'Alexa, weiter', um die nächste Anweisung zu erhalten. ";
     String STOP_SSML          = "Lasst euch weiterhin feiern! ";
-    String FALLBACK_SSML      = "Leider konnte der Herr dich nicht verstehen ";
+    String FALLBACK_SSML      = "Ich habe dich leider nicht verstanden. ";
 }

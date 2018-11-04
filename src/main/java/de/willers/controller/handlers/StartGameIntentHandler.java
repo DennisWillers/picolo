@@ -180,6 +180,17 @@ public class StartGameIntentHandler implements RequestHandler
         return (int) sessionAttribute.get(Parameter.SPIELCOUNTER);
     }
 
+    private HandlerInput speichereNaechsteAktion(HandlerInput input, String nachricht){
+        Map<String,Object> sessionAttribute = getSessionAttributes(input);
+        if (sessionAttribute.get(Parameter.LETZTE_NACHRICHT) == null) {
+            sessionAttribute.put(Parameter.LETZTE_NACHRICHT, nachricht);
+        } else {
+            sessionAttribute.replace(Parameter.LETZTE_NACHRICHT, nachricht);
+        }
+        input.getAttributesManager().setSessionAttributes(sessionAttribute);
+        return input;
+    }
+
     private Optional<Response> ermittleNaechsteAktion(HandlerInput input, Map<String,Object> sessionAttribute){
         try {
             System.out.println("ChallengeMaster init");
@@ -194,7 +205,8 @@ public class StartGameIntentHandler implements RequestHandler
             if(getSpielcounter(sessionAttribute) == 0){
                 start = Text.ERSTE_ANWEISUNG ;
             }
-            return neueChallenge(input,start+antwort,card,sessionAttribute);
+            input = speichereNaechsteAktion(input,start+antwort);
+            return neueChallenge(input,start+antwort,start+card);
         } catch (Exception e) {
             e.printStackTrace();
             return fehlerNachricht(input);
@@ -214,13 +226,13 @@ public class StartGameIntentHandler implements RequestHandler
 
     private Optional<Response> frageSpielerNamen(HandlerInput input, int spieler, Intent requestIntent){
         return input.getResponseBuilder()
-                .withSpeech(askPlayerName()+spieler+"?")
+                .withSpeech(askPlayerName()+spieler)
                 .addElicitSlotDirective(Parameter.NEUER_SPIELER_NAME, requestIntent)
                 .build();
     }
 
 
-    private Optional<Response> neueChallenge(HandlerInput input, String antwort, String card, Map<String,Object> sessionAttribute){
+    private Optional<Response> neueChallenge(HandlerInput input, String antwort, String card){
         return input.getResponseBuilder()
                 .withSpeech(antwort)
                 .withSimpleCard(Card.CHALLENGE, card)

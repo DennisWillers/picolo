@@ -23,7 +23,7 @@ public class Blueprint {
         return this.type;
     }
 
-    public String format(String[] players) {
+    public String toString(String[] players) {
         return this.format.format(players);
     }
 }

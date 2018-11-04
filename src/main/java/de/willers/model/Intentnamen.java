@@ -12,4 +12,5 @@ public interface Intentnamen {
 
     //Definierte Intents Namen
     String STARTGAMEINTENT = "StartGameIntent";
+    String WIEDERHOLEINTENT = "WiederholeIntent";
 }

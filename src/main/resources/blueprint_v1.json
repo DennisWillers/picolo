@@ -1,0 +1,74 @@
+[
+  {
+    "type": "CHALLENGE",
+    "template": "{1}, wenn deine Füße kleiner sind, als die von {0}, trink zwei Schlücke, ansonsten verteil sie. "
+  },
+  {
+    "type": "GAME",
+    "template": "{2} beginnt mit \"Ich packe meinen Koffer...\". Wer als erstes einen Fehler macht, trinkt vier Schlücke. "
+  },
+  {
+    "type": "GAME",
+    "template": "Lieber ein ungewöhnliches Haus an einem gewöhnlichen Ort haben oder anders herum? Stimmt alle gleichzeitig ab. Die Verlierer trinken zwei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "{1}, du musst entscheiden: wer von {0} und {2} ist deiner Meinung nach der beliebtere Spieler? Dieser Spieler verteilt zwei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Trink vier Schlücke, wenn du lieber eine Katze als einen Hund hättest. "
+  },
+  {
+    "type": "GAME",
+    "template": "Wir spielen jetzt das Spiel: \"Alles, was die Schildkröte Franklin machen kann\". Derjenige, der etwas wiederholt oder nichts mehr weiß, trinkt 4 Schlücke. {1} beginnt"
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle, die blaue Augen haben, trinken einen Schluck. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle, die Angst vor Spinnen haben, trinken einen Schluck. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle Haie, die in der Finanzbranche arbeiten, trinken zwei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "{0} , wähle, wer 1 Schluck aus deinem Glas trinken soll. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "{1} gib {0} eine Aufgaben. Wenn diese Aufgabe gemacht wurde, darf die Person vier Schlücke verteilen. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Jeder der eine Brille trägt, trinkt zwei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Derjenige, der am wenigstens getrunken hat, trinkt drei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Derjenige, der am meisten getrunkten hat, trinkt nochmal drei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Wenn {0} oder {1} einen Bart hat, dann muss er drei Schlücke trinken. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Wenn {0} jünger als {1} ist, dann trink einen Schluck. "
+  },
+  {
+    "type": "EX",
+    "template": "{2}, Entscheide, ob {1} oder {0} sein Glas auf EX trinken soll. "
+  },
+  {
+    "type": "GAME",
+    "template": "Wir spielen jetzt ein Themenspiel. Der Verlierer trinkt 4 Schlücke. \"Nennt mir Aufgaben im Haushalt\", {1} beginnt. "
+  }
+]
