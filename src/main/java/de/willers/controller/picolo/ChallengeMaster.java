@@ -23,10 +23,7 @@ public class ChallengeMaster {
     }
 
     public static ChallengeMaster loadFromFile(String file) throws Exception {
-        System.out.println("Parser");
         JSONParser parser = new JSONParser();
-        System.out.println("ReadTest");
-        System.out.println("JsonArray FileReader");
         JSONArray a = (JSONArray) parser.parse(new FileReader(file));
 
         System.out.println("Blueprint");
@@ -43,13 +40,33 @@ public class ChallengeMaster {
     }
 
     public Challenge getChallenge(String[] players) {
+        System.out.println("getChallege String[] = "+players);
+        System.out.println("getChallege String[0] = "+players[0]);
+        System.out.println("getChallege String[1] = "+players[1]);
         // filter out blueprints, that need more players than the amount of given players
         Object[] possibleBlueprints = Arrays.stream(blueprints).filter(b -> b.minPlayers() <= players.length).toArray();
         Blueprint blueprint = (Blueprint) possibleBlueprints[this.rand.nextInt(possibleBlueprints.length)];
 
         // randomly shuffle players
         String[] shuffled = Arrays.copyOf(players, players.length);
-        shuffleArray(shuffled);
+        if (players.length>2){
+            System.out.println("Players > 2");
+            shuffleArray(shuffled);
+            System.out.println(">2 Shuffled[0] = "+shuffled[0]);
+            System.out.println(">2 Shuffled[1] = "+shuffled[1]);
+        } else if (players.length == 2){
+            System.out.println("Players == 2");
+            Random random = new Random();
+            int zufallsZahl = random.nextInt(2);
+            if(zufallsZahl == 0){
+                System.out.println("==2");
+                String temp = shuffled[0];
+                shuffled[0] = shuffled[1];
+                shuffled[1] = temp;
+            }
+            System.out.println("Shuffled[0] = "+shuffled[0]);
+            System.out.println("Shuffled[1] = "+shuffled[1]);
+        }
         return new Challenge(blueprint, shuffled);
     }
 

@@ -30,59 +30,78 @@ public class StartGameIntentHandler implements RequestHandler
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        return pruefeAnzahlDerSpielerGegebenResponse(input);
+    }
+
+    //***********
+    //SPIEL-LOGIK
+    //***********
+
+    private Optional<Response> pruefeAnzahlDerSpielerGegebenResponse(HandlerInput input){
         //Get Session und Request Attribute
         Map<String,Object> sessionAttribute = getSessionAttributes(input);
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         //Frage nach der Anzahl der Spieler
         if((requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) && sessionAttribute.get(Parameter.ANZAHL_SPIELER) == null){
-        //if (requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) {
             System.out.println("Ermittle Anzahl Spieler");
             return frageAnzahlSpieler(input,requestIntent);
         }
         else {
-            System.out.println("SessionAttribute Zweig");
-            //Frage nach den Namen der Spieler
-
-            //Prüfe das sessionAttribut nicht leer ist
-            if(sessionAttribute.get(Parameter.SPIELER_NAMEN) != null){
-                System.out.println("Session Attribute nicht leer Zweig");
-                //Attribute auslesen
-                String neuerSpielerName = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getValue();
-                String spielerNamen[] = readPlayers(sessionAttribute);
-                int players = (int) sessionAttribute.get(Parameter.ANZAHL_SPIELER);
-                System.out.println("NeuerSpielerName: "+neuerSpielerName);
-
-                //Ermittle die Anzahl der ermittelnden Namen
-                int zaehleSpieler = zaehleSpieler(spielerNamen);
-                System.out.println("ZaehleSpieler = "+zaehleSpieler);
-                System.out.println("players = "+players);
-
-                //Prüfe ob es so viele Namen wie Spieler gibt
-                if (++zaehleSpieler < players){
-                    System.out.println("ZahleSpieler != Players Zweig");
-                    //Nummer des neuen Spielers ermitteln
-                    int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
-                    System.out.println("NeuerSpielerInt: "+neuerSpieler);
-
-                    //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
-                    input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
-                    return frageSpielerNamen(input,neuerSpieler+2,requestIntent);
-                }
-                else if(zaehleSpieler==players){
-                    System.out.println("ELSE Zweig ZahleSpieler != Players Zweig");
-                    input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
-                }
-            }
-            else {
-                System.out.println("Session Attribute leer Zweig");
-                //Wenn sessionAttribute leer sind
-                initialSessionAttribute(input,requestIntent,sessionAttribute);
-                return frageSpielerNamen(input,1,requestIntent);
-            }
+            return pruefeSessionAttributSpielerNamenVorhandenResponse(input,sessionAttribute,requestIntent);
         }
-        sessionAttribute = setSpielcounter(sessionAttribute);
-        input.getAttributesManager().setSessionAttributes(sessionAttribute);
-        return ermittleNaechsteAktion(input,sessionAttribute);
+    }
+
+    private Optional<Response> pruefeSessionAttributSpielerNamenVorhandenResponse(HandlerInput input,  Map<String,Object> sessionAttribute, Intent requestIntent){
+        System.out.println("SessionAttribute Zweig");
+        //Frage nach den Namen der Spieler
+
+        //Prüfe das sessionAttribut nicht leer ist
+        if(sessionAttribute.get(Parameter.SPIELER_NAMEN) != null){
+            return pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input,sessionAttribute,requestIntent);
+        }
+        else {
+            System.out.println("Session Attribute leer Zweig");
+            //Wenn sessionAttribute leer sind
+            initialSessionAttribute(input,requestIntent,sessionAttribute);
+            return frageSpielerNamen(input,1,requestIntent);
+        }
+    }
+
+    private Optional<Response> pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(HandlerInput input, Map<String,Object> sessionAttribute, Intent requestIntent){
+        System.out.println("Session Attribute nicht leer Zweig");
+        //Attribute auslesen
+        String neuerSpielerName = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getValue();
+        String spielerNamen[] = readPlayers(sessionAttribute);
+        int players = (int) sessionAttribute.get(Parameter.ANZAHL_SPIELER);
+        System.out.println("NeuerSpielerName: "+neuerSpielerName);
+
+        //Ermittle die Anzahl der ermittelnden Namen
+        int zaehleSpieler = zaehleSpieler(spielerNamen);
+        System.out.println("ZaehleSpieler = "+zaehleSpieler);
+        System.out.println("players = "+players);
+
+        //Prüfe ob es so viele Namen wie Spieler gibt
+        if (++zaehleSpieler < players){
+            System.out.println("ZahleSpieler != Players Zweig");
+            //Nummer des neuen Spielers ermitteln
+            int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
+            System.out.println("NeuerSpielerInt: "+neuerSpieler);
+
+            //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
+            input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
+            return frageSpielerNamen(input,neuerSpieler+2,requestIntent);
+        }
+        else if(zaehleSpieler==players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null){
+            System.out.println("ELSE Zweig Stringarray: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
+            input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
+            sessionAttribute = input.getAttributesManager().getSessionAttributes();
+            sessionAttribute = setSpielcounter(sessionAttribute);
+            input.getAttributesManager().setSessionAttributes(sessionAttribute);
+            return ermittleNaechsteAktion(input,sessionAttribute);
+        } else {
+            sessionAttribute = setSpielcounter(sessionAttribute);
+            return ermittleNaechsteAktion(input,sessionAttribute);
+        }
     }
 
     //*************
@@ -103,6 +122,7 @@ public class StartGameIntentHandler implements RequestHandler
         String convertSpielerNamen = spielerNamen2.toString();
         convertSpielerNamen = convertSpielerNamen.replace("[", "");
         convertSpielerNamen = convertSpielerNamen.replace("]", "");
+        System.out.println("ConvertSpielerNamen: "+convertSpielerNamen);
         return convertSpielerNamen.split(", ");
     }
 
@@ -151,17 +171,44 @@ public class StartGameIntentHandler implements RequestHandler
         return zaehleSpieler;
     }
 
-    private HandlerInput neuenSpielerHinzufuegen(String[] spielerNamen, Map<String,Object> sessionAttribute, String neuerSpielerName, HandlerInput input){
-        for(int i = 0; i < spielerNamen.length; i++){
-            if(spielerNamen[i].equals("null")){
-                spielerNamen[i] = neuerSpielerName;
-                System.out.println("Spielernamen: "+spielerNamen);
-                sessionAttribute.remove(Parameter.SPIELER_NAMEN);
-                sessionAttribute.put(Parameter.SPIELER_NAMEN,spielerNamen);
-                input.getAttributesManager().setSessionAttributes(sessionAttribute);
-                break;
+    private String generateSessionOutput(String[] array){
+        String output = "[";
+        for (int i = 0; i < array.length; i++) {
+            if(i == array.length-1){
+                output = output + array[i];
+            } else {
+                output  = output + array[i] + ", ";
             }
         }
+        output = output + "]";
+        System.out.println("Output: "+output);
+        return output;
+    }
+
+    private HandlerInput neuenSpielerHinzufuegen(String[] spielerNamen, Map<String,Object> sessionAttribute, String neuerSpielerName, HandlerInput input){
+        System.out.println("neuenSpielerHinzufuegen SessionAttribute1: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
+        int i = 0;
+        while(i < spielerNamen.length){
+            System.out.println("ForSchleife Spielername[i] = "+spielerNamen[i]);
+            if(spielerNamen[i].equals("null")){
+                System.out.println("SpielerNamen[i] = "+spielerNamen[i]+" | neuerSpielername = "+neuerSpielerName);
+                spielerNamen[i] = neuerSpielerName;
+                break;
+            }
+            i++;
+        }
+
+        System.out.println("Replace SessionAttribute vorher: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
+        System.out.println("Länge: "+spielerNamen.length+" | inhalt: "+spielerNamen[i]+" | 0te Stelle: "+spielerNamen[0]);
+        String output = generateSessionOutput(spielerNamen);
+        sessionAttribute.replace(Parameter.SPIELER_NAMEN,output);
+        System.out.println("Replace SessionAttribute nacher: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
+        System.out.println("Replace SessionAttribute ohne ToString nacher: "+sessionAttribute.get(Parameter.SPIELER_NAMEN));
+        input.getAttributesManager().setSessionAttributes(sessionAttribute);
+
+
+        System.out.println("neuenSpielerHinzufuegen SessionAttribute2: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
+        System.out.println("neuenSpielerHinzufuegen Input1: "+input.getAttributesManager().getSessionAttributes().get(Parameter.SPIELER_NAMEN).toString());
         return input;
     }
 
@@ -196,7 +243,7 @@ public class StartGameIntentHandler implements RequestHandler
             System.out.println("ChallengeMaster init");
             ChallengeMaster master = ChallengeMaster.loadFromFile("blueprint.json");
             System.out.println("String players init");
-            String[] players = readPlayers(sessionAttribute);
+            String[] players = readPlayers(input.getAttributesManager().getSessionAttributes());
             System.out.println("Get Challenge");
             Challenge challenge = master.getChallenge(players);
             String card = challenge.toString();
@@ -216,7 +263,6 @@ public class StartGameIntentHandler implements RequestHandler
     /*
      * RESPONSE MÖGLICHKEITEN
      */
-
     private Optional<Response> frageAnzahlSpieler(HandlerInput input, Intent requestIntent){
         return input.getResponseBuilder()
                 .withSpeech(randomPlayerAnswer())
