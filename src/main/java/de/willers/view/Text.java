@@ -20,6 +20,7 @@ public interface Text {
             "Bitte sage mir deinen Namen Spieler ",
             "Sag mir bitte deinen Namen Spieler "
     };
+    String FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN = ", habe ich deinen Namen richtig verstanden?";
     String NAECHSTE_AUFGABE = "Wollt ihr die nächste Aufgabe Wissen? ";
     String ERSTE_ANWEISUNG = "Alles klar, Los geht´s! ";
     String WIEDERHOLEN_FEHLER = "Das Spiel wurde noch nicht gestartet. Deswegen kann ich nichts wiederholen. Bitte starte vorher das Spiel. ";

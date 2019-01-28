@@ -10,4 +10,5 @@ public interface Parameter {
     String NEUER_SPIELER_NAME = "NeuerSpielerName";
     String SPIELCOUNTER = "Spielcounter";
     String LETZTE_NACHRICHT = "LetzteNachricht";
+    String SPIELERNAME_VERSTANDEN = "SpielernameVerstanden";
 }

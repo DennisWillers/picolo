@@ -80,27 +80,36 @@ public class StartGameIntentHandler implements RequestHandler
         System.out.println("ZaehleSpieler = "+zaehleSpieler);
         System.out.println("players = "+players);
 
-        //Prüfe ob es so viele Namen wie Spieler gibt
-        if (++zaehleSpieler < players){
-            System.out.println("ZahleSpieler != Players Zweig");
-            //Nummer des neuen Spielers ermitteln
-            int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
-            System.out.println("NeuerSpielerInt: "+neuerSpieler);
+        //Prüfe ob der Spielername verstanden wurde
+        boolean spielernameVerstanden = (boolean) sessionAttribute.get(Parameter.SPIELERNAME_VERSTANDEN);
+        if(spielernameVerstanden){
+            sessionAttribute = changeSpielernameVerstanden(sessionAttribute);
+            //Prüfe ob es so viele Namen wie Spieler gibt
+            if (++zaehleSpieler < players){
+                System.out.println("ZahleSpieler != Players Zweig");
+                //Nummer des neuen Spielers ermitteln
+                int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
+                System.out.println("NeuerSpielerInt: "+neuerSpieler);
 
-            //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
-            input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
-            return frageSpielerNamen(input,neuerSpieler+2,requestIntent);
-        }
-        else if(zaehleSpieler==players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null){
-            System.out.println("ELSE Zweig Stringarray: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
-            input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
-            sessionAttribute = input.getAttributesManager().getSessionAttributes();
-            sessionAttribute = setSpielcounter(sessionAttribute);
-            input.getAttributesManager().setSessionAttributes(sessionAttribute);
-            return ermittleNaechsteAktion(input,sessionAttribute);
+                //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
+                input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
+                return frageSpielerNamen(input,neuerSpieler+2,requestIntent);
+            }
+            else if(zaehleSpieler==players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null){
+                System.out.println("ELSE Zweig Stringarray: "+sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
+                input = neuenSpielerHinzufuegen(spielerNamen,sessionAttribute,neuerSpielerName,input);
+                sessionAttribute = input.getAttributesManager().getSessionAttributes();
+                sessionAttribute = setSpielcounter(sessionAttribute);
+                input.getAttributesManager().setSessionAttributes(sessionAttribute);
+                return ermittleNaechsteAktion(input,sessionAttribute);
+            } else {
+                sessionAttribute = setSpielcounter(sessionAttribute);
+                return ermittleNaechsteAktion(input,sessionAttribute);
+            }
         } else {
-            sessionAttribute = setSpielcounter(sessionAttribute);
-            return ermittleNaechsteAktion(input,sessionAttribute);
+            sessionAttribute = changeSpielernameVerstanden(sessionAttribute);
+            String verstandenerSpielername = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getValue();
+            return frageObSpielernameRichtigVerstandenWurde(input,verstandenerSpielername);
         }
     }
 
@@ -142,6 +151,7 @@ public class StartGameIntentHandler implements RequestHandler
         String[] spielerNamen = new String[players];
         sessionAttribute.put(Parameter.ANZAHL_SPIELER,players);
         sessionAttribute.put(Parameter.SPIELER_NAMEN,spielerNamen);
+        sessionAttribute.put(Parameter.SPIELERNAME_VERSTANDEN,false);
         input.getAttributesManager().setSessionAttributes(sessionAttribute);
         return input;
     }
@@ -223,6 +233,16 @@ public class StartGameIntentHandler implements RequestHandler
         return  sessionAttribute;
     }
 
+    private Map<String,Object> changeSpielernameVerstanden (Map<String,Object> sessionAttribute){
+        boolean spielernameVerstanden = (boolean) sessionAttribute.get(Parameter.SPIELERNAME_VERSTANDEN);
+        if (spielernameVerstanden) {
+            sessionAttribute.replace(Parameter.SPIELERNAME_VERSTANDEN, false);
+        } else {
+            sessionAttribute.replace(Parameter.SPIELERNAME_VERSTANDEN, true);
+        }
+        return  sessionAttribute;
+    }
+
     private int getSpielcounter (Map<String,Object> sessionAttribute){
         return (int) sessionAttribute.get(Parameter.SPIELCOUNTER);
     }
@@ -274,6 +294,13 @@ public class StartGameIntentHandler implements RequestHandler
         return input.getResponseBuilder()
                 .withSpeech(askPlayerName()+spieler)
                 .addElicitSlotDirective(Parameter.NEUER_SPIELER_NAME, requestIntent)
+                .build();
+    }
+
+    private Optional<Response> frageObSpielernameRichtigVerstandenWurde(HandlerInput input, String spielername){
+        return input.getResponseBuilder()
+                .withSpeech(spielername + Text.FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN)
+                .withReprompt(spielername + Text.FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN)
                 .build();
     }
 
