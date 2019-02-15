@@ -2,13 +2,9 @@ package de.willers.controller.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
-import de.willers.controller.intents.Spiellogik;
 import de.willers.model.Intentnamen;
 
-import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -25,9 +21,9 @@ public class NoIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        //return input.getResponseBuilder().withSpeech("Nein!").build();
-        Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
+        return input.getResponseBuilder().withSpeech("Nein!").build();
+        /*Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
-        return new Spiellogik().pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input,sessionAttributes,requestIntent);
+        return new Spiellogik().pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input,sessionAttributes,requestIntent);*/
     }
 }
