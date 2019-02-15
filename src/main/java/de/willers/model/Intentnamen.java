@@ -10,6 +10,10 @@ public interface Intentnamen {
     String CANCELINTENT = "AMAZON.CancelIntent";
     String FALLBACKINTENT = "AMAZON.FallbackIntent";
 
+    //Ja Nein
+    String YESINTENT = "AMAZON.YesIntent";
+    String NOINTENT = "AMAZON.NoIntent";
+
     //Definierte Intents Namen
     String STARTGAMEINTENT = "StartGameIntent";
     String WIEDERHOLEINTENT = "WiederholeIntent";
