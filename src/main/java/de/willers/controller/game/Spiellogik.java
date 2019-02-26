@@ -6,6 +6,8 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import de.willers.controller.picolo.Challenge;
 import de.willers.controller.picolo.ChallengeMaster;
+import de.willers.model.Context;
+import de.willers.model.Intentnamen;
 import de.willers.model.Parameter;
 import de.willers.view.Card;
 import de.willers.view.Text;
@@ -14,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.amazon.ask.request.Predicates.intentName;
+
 /**
  * Von Dennis Willers (A13A316) am 28.01.2019 erstellt
  */
@@ -21,6 +25,21 @@ public class Spiellogik extends Hilfslogik {
     //***********
     //SPIEL-LOGIK
     //***********
+
+    public Optional<Response> pruefeContext(HandlerInput input){
+        String context = (String) input.getAttributesManager().getSessionAttributes().get(Parameter.CONTEXT);
+        switch (context){
+            case Context.START:
+                System.out.println("Ermittle Anzahl Spieler");
+                Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
+                if(input.matches(intentName(Intentnamen.YESINTENT)))
+                    return frageAnzahlSpielerYesIntent(input,requestIntent);
+                else
+                    return frageAnzahlSpieler(input, requestIntent);
+            default:
+                return pruefeAnzahlDerSpielerGegebenResponse(input);
+        }
+    }
 
     public Optional<Response> pruefeAnzahlDerSpielerGegebenResponse(HandlerInput input) {
         //Get Session und Request Attribute

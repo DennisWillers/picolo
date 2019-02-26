@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Hilfslogik extends de.willers.controller.game.Response {
-    Map<String, Object> getSessionAttributes(HandlerInput input) {
+    public Map<String, Object> getSessionAttributes(HandlerInput input) {
         Map<String, Object> sessionAttribute = new HashMap<>();
         Map<String, Object> inputSessionAttribute = input.getAttributesManager().getSessionAttributes();
         sessionAttribute.putAll(inputSessionAttribute);

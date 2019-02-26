@@ -19,6 +19,13 @@ public class Response {
                 .build();
     }
 
+    Optional<com.amazon.ask.model.Response> frageAnzahlSpielerYesIntent(HandlerInput input, Intent requestIntent) {
+        return input.getResponseBuilder()
+                .withSpeech(randomPlayerAnswer())
+                .withReprompt(randomPlayerAnswer())
+                .build();
+    }
+
     Optional<com.amazon.ask.model.Response> frageSpielerNamen(HandlerInput input, int spieler, Intent requestIntent) {
         return input.getResponseBuilder()
                 .withSpeech(askPlayerName() + spieler)
