@@ -5,12 +5,16 @@ import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.Response;
 import de.willers.controller.picolo.Challenge;
 import de.willers.controller.picolo.ChallengeMaster;
+import de.willers.model.Context;
+import de.willers.model.Intentnamen;
 import de.willers.model.Parameter;
 import de.willers.view.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.amazon.ask.request.Predicates.intentName;
 
 public class Hilfslogik extends de.willers.controller.game.Response {
     public Map<String, Object> getSessionAttributes(HandlerInput input) {
@@ -37,8 +41,24 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         String[] spielerNamen = new String[players];
         sessionAttribute.put(Parameter.ANZAHL_SPIELER, players);
         sessionAttribute.put(Parameter.SPIELER_NAMEN, spielerNamen);
-        sessionAttribute.put(Parameter.SPIELERNAME_VERSTANDEN, false);
+        sessionAttribute.put(Parameter.VALID_SPIELERNAME,"null");
         input.getAttributesManager().setSessionAttributes(sessionAttribute);
+        return input;
+    }
+
+    HandlerInput changeContext (HandlerInput input, String context){
+        Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
+        sessionAttribute.replace(Parameter.CONTEXT,context);
+        input.getAttributesManager().setSessionAttributes(sessionAttribute);
+        return input;
+    }
+
+    HandlerInput changeSessionParameter (HandlerInput input, String parameter, String value){
+        System.out.println("Value: "+value);
+        Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
+        sessionAttribute.replace(parameter,value);
+        input.getAttributesManager().setSessionAttributes(sessionAttribute);
+        System.out.println("ValidSpielername: "+input.getAttributesManager().getSessionAttributes().get(Parameter.VALID_SPIELERNAME));
         return input;
     }
 
@@ -118,16 +138,6 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         return sessionAttribute;
     }
 
-    public Map<String, Object> changeSpielernameVerstanden(Map<String, Object> sessionAttribute) {
-        boolean spielernameVerstanden = (boolean) sessionAttribute.get(Parameter.SPIELERNAME_VERSTANDEN);
-        if (spielernameVerstanden) {
-            sessionAttribute.replace(Parameter.SPIELERNAME_VERSTANDEN, false);
-        } else {
-            sessionAttribute.replace(Parameter.SPIELERNAME_VERSTANDEN, true);
-        }
-        return sessionAttribute;
-    }
-
     private int getSpielcounter(Map<String, Object> sessionAttribute) {
         return (int) sessionAttribute.get(Parameter.SPIELCOUNTER);
     }
@@ -163,5 +173,9 @@ public class Hilfslogik extends de.willers.controller.game.Response {
             e.printStackTrace();
             return fehlerNachricht(input);
         }
+    }
+
+    boolean spielerNameVerstanden(HandlerInput input){
+        return input.matches(intentName(Intentnamen.YESINTENT));
     }
 }

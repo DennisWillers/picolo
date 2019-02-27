@@ -3,6 +3,7 @@ package de.willers.controller.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import de.willers.controller.game.Spiellogik;
 import de.willers.model.Intentnamen;
 
 import java.util.Optional;
@@ -21,9 +22,7 @@ public class NoIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        return input.getResponseBuilder().withSpeech("Nein!").build();
-        /*Map<String, Object> sessionAttributes = input.getAttributesManager().getSessionAttributes();
-        Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
-        return new Spiellogik().pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input,sessionAttributes,requestIntent);*/
+        Spiellogik spiellogik = new Spiellogik();
+        return spiellogik.pruefeContext(input);
     }
 }

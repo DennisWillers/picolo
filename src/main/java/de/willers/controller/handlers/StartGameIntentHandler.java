@@ -23,7 +23,7 @@ public class StartGameIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input) {
         Spiellogik spiellogik = new Spiellogik();
-        return spiellogik.pruefeAnzahlDerSpielerGegebenResponse(input);
-        //return pruefeAnzahlDerSpielerGegebenResponse(input);
+        //return spiellogik.pruefeAnzahlDerSpielerGegebenResponse(input);
+        return spiellogik.pruefeContext(input);
     }
 }

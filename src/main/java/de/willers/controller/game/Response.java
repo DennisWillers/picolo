@@ -33,6 +33,13 @@ public class Response {
                 .build();
     }
 
+    Optional<com.amazon.ask.model.Response> frageSpielerNamenYesOrNoIntent(HandlerInput input, int spieler, Intent requestIntent) {
+        return input.getResponseBuilder()
+                .withSpeech(askPlayerName() + spieler)
+                .withReprompt(askPlayerName() + spieler)
+                .build();
+    }
+
     Optional<com.amazon.ask.model.Response> frageObSpielernameRichtigVerstandenWurde(HandlerInput input, String spielername) {
         return input.getResponseBuilder()
                 .withSpeech(spielername + Text.FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN)
