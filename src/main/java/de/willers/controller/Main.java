@@ -20,8 +20,6 @@ public class Main extends SkillStreamHandler {
                         new YesIntentHandler(),
                         new NoIntentHandler(),
 
-                        new TestHandler(),
-
                         new StartGameIntentHandler(),
                         new WiederholeIntentHandler())
                 .withSkillId(Parameter.SKILL_ID)

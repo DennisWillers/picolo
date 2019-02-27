@@ -14,9 +14,6 @@ public interface Intentnamen {
     String YESINTENT = "AMAZON.YesIntent";
     String NOINTENT = "AMAZON.NoIntent";
 
-    //test
-    String TEST = "test";
-
     //Definierte Intents Namen
     String STARTGAMEINTENT = "StartGameIntent";
     String WIEDERHOLEINTENT = "WiederholeIntent";

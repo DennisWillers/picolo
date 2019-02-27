@@ -34,7 +34,7 @@ public class Spiellogik extends Hilfslogik {
                 //Definieren nächsten Context:
                 input = changeContext(input,Context.PLAYER_COUNT);
                 System.out.println("Ermittle Anzahl Spieler");
-                if(input.matches(intentName(Intentnamen.YESINTENT)))
+                if(input.matches(intentName(Intentnamen.YESINTENT)) || input.matches(intentName(Intentnamen.NOINTENT)))
                     return frageAnzahlSpielerYesIntent(input,requestIntent);
                 else
                     return frageAnzahlSpieler(input, requestIntent);
@@ -79,6 +79,7 @@ public class Spiellogik extends Hilfslogik {
             System.out.println("Session Attribute leer Zweig");
             //Wenn sessionAttribute leer sind
             initialSessionAttribute(input, requestIntent, sessionAttribute);
+            input = speichereNaechsteAktion(input,1);
             return frageSpielerNamen(input, 1, requestIntent);
         }
     }
@@ -99,10 +100,12 @@ public class Spiellogik extends Hilfslogik {
         if(input.matches(intentName(Intentnamen.YESINTENT)))
             return pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input,requestIntent);
         else {
+            //Change Context
+            input = changeContext(input,Context.PLAYER_NAME_ASK);
             Map<String,Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
             String[] spielerNamen = readPlayers(sessionAttribute);
             int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
-            return frageSpielerNamen(input, neuerSpieler + 1, requestIntent);
+            return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 1, requestIntent);
         }
     }
 
@@ -135,6 +138,7 @@ public class Spiellogik extends Hilfslogik {
             //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
             input = neuenSpielerHinzufuegen(spielerNamen, sessionAttribute, neuerSpielerName, input);
             System.out.println("Frage neuen Spielernamen");
+            input = speichereNaechsteAktion(input,neuerSpieler+2);
             return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 2, requestIntent);
         } else /*if (zaehleSpieler == players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null)*/ {
             //ändere Context

@@ -42,8 +42,8 @@ public class Response {
 
     Optional<com.amazon.ask.model.Response> frageObSpielernameRichtigVerstandenWurde(HandlerInput input, String spielername) {
         return input.getResponseBuilder()
-                .withSpeech(spielername + Text.FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN)
-                .withReprompt(spielername + Text.FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN)
+                .withSpeech(randomSpielernameVerstandenAntwort(spielername))
+                .withReprompt(randomSpielernameVerstandenAntwort(spielername))
                 .build();
     }
 
@@ -66,13 +66,26 @@ public class Response {
 
     //HILFSMETHODEN
 
-    private String randomPlayerAnswer() {
-        String[] text = Text.ANZAHL_SPIELER;
-        return text[(int) Math.floor(Math.random() * (Text.ANZAHL_SPIELER.length))];
+    private String randomSpielernameVerstandenAntwort(String spielername){
+        String[] hallo = Text.HALLO;
+        String[] text = Text.FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN;
+        String hallo1 = hallo[zufallsZahl(hallo.length)];
+        String text2 = text[zufallsZahl(text.length)];
+        String ausgabe = hallo1 + spielername + text2;
+        return ausgabe;
     }
 
-    private String askPlayerName() {
+    private String randomPlayerAnswer() {
+        String[] text = Text.ANZAHL_SPIELER;
+        return text[zufallsZahl(text.length)];
+    }
+
+    String askPlayerName() {
         String[] text = Text.SPIELER_NAME_FRAGEN;
-        return text[(int) Math.floor(Math.random() * (Text.SPIELER_NAME_FRAGEN.length))];
+        return text[zufallsZahl(text.length)];
+    }
+
+    int zufallsZahl(int length){
+        return (int) Math.floor(Math.random() * (length));
     }
 }

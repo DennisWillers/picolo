@@ -26,7 +26,6 @@ public class YesIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        Spiellogik spiellogik = new Spiellogik();
-        return spiellogik.pruefeContext(input);
+        return new Hilfslogik().sinnhaftigkeitDesEinsatzesVonJaNeinAnpassen(input);
     }
 }

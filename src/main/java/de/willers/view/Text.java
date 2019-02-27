@@ -18,12 +18,27 @@ public interface Text {
     String[] SPIELER_NAME_FRAGEN = {
             "Nenne mir deinen Namen Spieler ",
             "Bitte sage mir deinen Namen Spieler ",
-            "Sag mir bitte deinen Namen Spieler "
+            "Sag mir bitte deinen Namen Spieler ",
+            "Ich benötige deinen namen Spieler ",
+            "Bitte nenne mir deinen Namen Spieler "
     };
-    String FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN = ", habe ich deinen Namen richtig verstanden?";
+    String[] FRAGE_SPIELERNAME_RICHTIG_VERSTANDEN = {
+            ", habe ich deinen Namen richtig verstanden?",
+            ", heißt du wirklich so?",
+            ", willst du im weiteren Spielverlauf so genannt werden?",
+            ", ist der Name richtig verstanden worden?"
+    };
     String NAECHSTE_AUFGABE = "Wollt ihr die nächste Aufgabe Wissen? ";
     String ERSTE_ANWEISUNG = "Alles klar, Los geht´s! ";
     String WIEDERHOLEN_FEHLER = "Das Spiel wurde noch nicht gestartet. Deswegen kann ich nichts wiederholen. Bitte starte vorher das Spiel. ";
+    String HALLO[] = {
+            "Hallo ",
+            "Servus ",
+            "Lieber ",
+            "Moin ",
+            "Hi ",
+            "Juten Tag "
+    };
 
     //SSML Aussprache
 

@@ -3,6 +3,7 @@ package de.willers.controller.game;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.Response;
+import de.willers.controller.handlers.WiederholeIntentHandler;
 import de.willers.controller.picolo.Challenge;
 import de.willers.controller.picolo.ChallengeMaster;
 import de.willers.model.Context;
@@ -142,7 +143,7 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         return (int) sessionAttribute.get(Parameter.SPIELCOUNTER);
     }
 
-    private HandlerInput speichereNaechsteAktion(HandlerInput input, String nachricht) {
+    HandlerInput speichereNaechsteAktion(HandlerInput input, String nachricht) {
         Map<String, Object> sessionAttribute = getSessionAttributes(input);
         if (sessionAttribute.get(Parameter.LETZTE_NACHRICHT) == null) {
             sessionAttribute.put(Parameter.LETZTE_NACHRICHT, nachricht);
@@ -151,6 +152,11 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         }
         input.getAttributesManager().setSessionAttributes(sessionAttribute);
         return input;
+    }
+
+    HandlerInput speichereNaechsteAktion(HandlerInput input, int neuerSpieler) {
+        String nachricht = askPlayerName() + neuerSpieler;
+        return speichereNaechsteAktion(input,nachricht);
     }
 
     Optional<Response> ermittleNaechsteAktion(HandlerInput input, Map<String, Object> sessionAttribute) {
@@ -177,5 +183,22 @@ public class Hilfslogik extends de.willers.controller.game.Response {
 
     boolean spielerNameVerstanden(HandlerInput input){
         return input.matches(intentName(Intentnamen.YESINTENT));
+    }
+
+    public Optional<Response> sinnhaftigkeitDesEinsatzesVonJaNeinAnpassen(HandlerInput input){
+        Spiellogik spiellogik = new Spiellogik();
+        String context = (String) input.getAttributesManager().getSessionAttributes().get(Parameter.CONTEXT);
+        switch (context){
+            case Context.START:
+            case Context.PLAYER_NAME_CONFIRM:
+                return spiellogik.pruefeContext(input);
+            case Context.PLAYER_COUNT:
+                input = changeContext(input,Context.START);
+                return spiellogik.pruefeContext(input);
+            case Context.PLAYER_NAME_ASK:
+                return new WiederholeIntentHandler().handle(input);
+            default:
+                return spiellogik.pruefeContext(input);
+        }
     }
 }
