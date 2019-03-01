@@ -28,6 +28,7 @@ public class Spiellogik extends Hilfslogik {
 
     public Optional<Response> pruefeContext(HandlerInput input){
         String context = (String) input.getAttributesManager().getSessionAttributes().get(Parameter.CONTEXT);
+        context = context == null ? Context.PLAYER_COUNT : context;
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         switch (context){
             case Context.START:
@@ -58,6 +59,8 @@ public class Spiellogik extends Hilfslogik {
         if ((requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) && sessionAttribute.get(Parameter.ANZAHL_SPIELER) == null) {
             System.out.println("Ermittle Anzahl Spieler");
             return frageAnzahlSpieler(input, requestIntent);
+        } else if(requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("1")){
+            return anzahlSpielerIstEins(input,requestIntent);
         } else {
             return pruefeSessionAttributSpielerNamenVorhandenResponse(input, requestIntent);
         }

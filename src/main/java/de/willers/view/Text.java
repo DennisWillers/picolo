@@ -15,6 +15,7 @@ public interface Text {
             "Nenne mir die Anzahl der teilnehmenden Spieler",
             "Wie viele Spieler gibt es heute?"
             };
+    String ANZAHL_EIN_SPIELER = "Leider unterstützen wir nicht grundloses Selbstbetrinken. Bitte suche dir hierfür weitere Mitspieler. ";
     String[] SPIELER_NAME_FRAGEN = {
             "Nenne mir deinen Namen Spieler ",
             "Bitte sage mir deinen Namen Spieler ",

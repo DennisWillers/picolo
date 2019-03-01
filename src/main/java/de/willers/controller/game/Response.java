@@ -19,6 +19,13 @@ public class Response {
                 .build();
     }
 
+    Optional<com.amazon.ask.model.Response> anzahlSpielerIstEins(HandlerInput input, Intent requestIntent) {
+        return input.getResponseBuilder()
+                .withSpeech(Text.ANZAHL_EIN_SPIELER + randomPlayerAnswer())
+                .addElicitSlotDirective(Parameter.ANZAHL_SPIELER, requestIntent)
+                .build();
+    }
+
     Optional<com.amazon.ask.model.Response> frageAnzahlSpielerYesIntent(HandlerInput input, Intent requestIntent) {
         return input.getResponseBuilder()
                 .withSpeech(randomPlayerAnswer())

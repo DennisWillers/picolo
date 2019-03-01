@@ -165,5 +165,9 @@
   {
     "type": "CHALLENGE",
     "template": "Die größte Person im Raum trinkt drei Schlücke. "
+  },
+  {
+    "type": "CHALLENGE",
+    "template": "Alle Kinder der 90er trinken einen Schluck. "
   }
 ]
