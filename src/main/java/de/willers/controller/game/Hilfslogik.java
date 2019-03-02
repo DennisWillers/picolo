@@ -43,6 +43,7 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         sessionAttribute.put(Parameter.ANZAHL_SPIELER, players);
         sessionAttribute.put(Parameter.SPIELER_NAMEN, spielerNamen);
         sessionAttribute.put(Parameter.VALID_SPIELERNAME,"null");
+        sessionAttribute.put(Parameter.WIEDERGEGEBENE_NACHRICHTEN,"null");
         input.getAttributesManager().setSessionAttributes(sessionAttribute);
         return input;
     }
@@ -166,7 +167,8 @@ public class Hilfslogik extends de.willers.controller.game.Response {
             System.out.println("String players init");
             String[] players = readPlayers(input.getAttributesManager().getSessionAttributes());
             System.out.println("Get Challenge");
-            Challenge challenge = master.getChallenge(players);
+            Challenge challenge = master.getChallenge(players, (String) sessionAttribute.get(Parameter.WIEDERGEGEBENE_NACHRICHTEN));
+            input = aktualisiereWiedergegebeneNachrichten(input,challenge);
             String card = challenge.toString();
             String antwort = "<prosody rate=\"slow\">" + challenge.toString() + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "<break time=\"10s\"/> " + "</prosody>";
             String start = "";
@@ -181,8 +183,33 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         }
     }
 
-    boolean spielerNameVerstanden(HandlerInput input){
-        return input.matches(intentName(Intentnamen.YESINTENT));
+    private HandlerInput aktualisiereWiedergegebeneNachrichten(HandlerInput input, Challenge newChallenge){
+        Map<String,Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
+        int neueZahl = newChallenge.getBlueprint().getId();
+        String wiedergegebeneNachrichten = (String) sessionAttribute.get(Parameter.WIEDERGEGEBENE_NACHRICHTEN);
+        if(wiedergegebeneNachrichten.equals("null")){
+            wiedergegebeneNachrichten = neueZahl+"";
+        } else {
+            String[] nachrichten = wiedergegebeneNachrichten.split(",");
+            if(pruefeNeueChallengeAufBereitsGesagt(nachrichten,neueZahl)){
+                wiedergegebeneNachrichten = neueZahl+"";
+            } else {
+                wiedergegebeneNachrichten = wiedergegebeneNachrichten + "," + neueZahl;
+            }
+        }
+        sessionAttribute.replace(Parameter.WIEDERGEGEBENE_NACHRICHTEN,wiedergegebeneNachrichten);
+        input.getAttributesManager().setSessionAttributes(sessionAttribute);
+        return input;
+    }
+
+    private boolean pruefeNeueChallengeAufBereitsGesagt(String[] nachrichten, int neueZahl){
+        for (String nachricht:nachrichten)
+        {
+            if(Integer.parseInt(nachricht) == neueZahl){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Optional<Response> sinnhaftigkeitDesEinsatzesVonJaNeinAnpassen(HandlerInput input){

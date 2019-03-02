@@ -9,8 +9,10 @@ import java.text.MessageFormat;
 public class Blueprint {
     private MessageFormat format;
     private ChallengeType type;
+    private int id;
 
-    public Blueprint(String text, ChallengeType type) {
+    public Blueprint(int id, String text, ChallengeType type) {
+        this.id = id;
         this.format = new MessageFormat(text);
         this.type = type;
     }
@@ -26,4 +28,9 @@ public class Blueprint {
     public String toString(String[] players) {
         return this.format.format(players);
     }
+
+    public int getId() {
+        return this.id;
+    }
 }
+

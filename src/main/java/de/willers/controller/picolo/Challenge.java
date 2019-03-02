@@ -16,4 +16,8 @@ public class Challenge {
     public String toString() {
         return blueprint.toString(players);
     }
+
+    public Blueprint getBlueprint(){
+        return blueprint;
+    }
 }

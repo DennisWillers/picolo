@@ -12,4 +12,5 @@ public interface Parameter {
     String LETZTE_NACHRICHT = "LetzteNachricht";
     String CONTEXT = "context";
     String VALID_SPIELERNAME = "validSpielername";
+    String WIEDERGEGEBENE_NACHRICHTEN = "wiedergegebeneNachrichten";
 }
