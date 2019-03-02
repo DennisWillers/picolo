@@ -35,7 +35,9 @@ public interface Text {
     String HALLO[] = {
             "Hallo ",
             "Servus ",
-            "Lieber ",
+            "Grüß dich ",
+            "Naaa ",
+            "Na wen haben wir denn hier? ",
             "Moin ",
             "Hi ",
             "Juten Tag "
