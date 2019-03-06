@@ -4,15 +4,11 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
-import de.willers.controller.picolo.Challenge;
-import de.willers.controller.picolo.ChallengeMaster;
+import com.amazon.ask.model.SlotConfirmationStatus;
 import de.willers.model.Context;
 import de.willers.model.Intentnamen;
 import de.willers.model.Parameter;
-import de.willers.view.Card;
-import de.willers.view.Text;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,19 +22,20 @@ public class Spiellogik extends Hilfslogik {
     //SPIEL-LOGIK
     //***********
 
-    public Optional<Response> pruefeContext(HandlerInput input){
+    public Optional<Response> pruefeContext(HandlerInput input) {
         String context = (String) input.getAttributesManager().getSessionAttributes().get(Parameter.CONTEXT);
         context = context == null ? Context.PLAYER_COUNT : context;
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
-        switch (context){
+        switch (context) {
             case Context.START:
                 //Definieren nächsten Context:
-                input = changeContext(input,Context.PLAYER_COUNT);
+                input = changeContext(input, Context.PLAYER_COUNT);
                 System.out.println("Ermittle Anzahl Spieler");
-                if(input.matches(intentName(Intentnamen.YESINTENT)) || input.matches(intentName(Intentnamen.NOINTENT)))
+                return frageAnzahlSpieler(input, requestIntent);
+                /*if(input.matches(intentName(Intentnamen.YESINTENT)) || input.matches(intentName(Intentnamen.NOINTENT)))
                     return frageAnzahlSpielerYesIntent(input,requestIntent);
                 else
-                    return frageAnzahlSpieler(input, requestIntent);
+                    return frageAnzahlSpieler(input, requestIntent);*/
             case Context.PLAYER_COUNT:
                 return pruefeAnzahlDerSpielerGegebenResponse(input);
             case Context.PLAYER_NAME_ASK:
@@ -56,11 +53,11 @@ public class Spiellogik extends Hilfslogik {
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         Map<String, Object> sessionAttribute = getSessionAttributes(input);
         //Frage nach der Anzahl der Spieler
-        if ((requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?")) && sessionAttribute.get(Parameter.ANZAHL_SPIELER) == null) {
+        if ((requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue() == null || requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("?"))) {// && sessionAttribute.get(Parameter.ANZAHL_SPIELER) == null) {
             System.out.println("Ermittle Anzahl Spieler");
             return frageAnzahlSpieler(input, requestIntent);
-        } else if(requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("1")){
-            return anzahlSpielerIstEins(input,requestIntent);
+        } else if (requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue().equals("1")) {
+            return anzahlSpielerIstEins(input, requestIntent);
         } else {
             return pruefeSessionAttributSpielerNamenVorhandenResponse(input, requestIntent);
         }
@@ -77,45 +74,50 @@ public class Spiellogik extends Hilfslogik {
             return pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input, requestIntent);
         } else {
             //Context ändern
-            input = changeContext(input,Context.PLAYER_NAME_ASK);
+            input = changeContext(input, Context.PLAYER_NAME_ASK);
             sessionAttribute = getSessionAttributes(input);
             System.out.println("Session Attribute leer Zweig");
             //Wenn sessionAttribute leer sind
             initialSessionAttribute(input, requestIntent, sessionAttribute);
-            input = speichereNaechsteAktion(input,1);
+            input = speichereNaechsteAktion(input, 1);
             return frageSpielerNamen(input, 1, requestIntent);
         }
     }
 
-    private Optional<Response> verstandenenNamenZurUeberpruefungResponse(HandlerInput input){
+    private Optional<Response> verstandenenNamenZurUeberpruefungResponse(HandlerInput input) {
         //Context ändern
-        input = changeContext(input,Context.PLAYER_NAME_CONFIRM);
+        input = changeContext(input, Context.PLAYER_NAME_CONFIRM);
 
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         String verstandenerSpielername = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getValue();
-        input = changeSessionParameter(input,Parameter.VALID_SPIELERNAME,verstandenerSpielername);
-        System.out.println("ValidSpielername: "+input.getAttributesManager().getSessionAttributes().get(Parameter.VALID_SPIELERNAME));
-        return frageObSpielernameRichtigVerstandenWurde(input, verstandenerSpielername);
+        input = changeSessionParameter(input, Parameter.VALID_SPIELERNAME, verstandenerSpielername);
+        System.out.println("ValidSpielername: " + input.getAttributesManager().getSessionAttributes().get(Parameter.VALID_SPIELERNAME));
+        return frageObSpielernameRichtigVerstandenWurde(input, verstandenerSpielername, requestIntent);
     }
 
-    private Optional<Response> pruefeVerstandenenSpielernamen(HandlerInput input){
+    private Optional<Response> pruefeVerstandenenSpielernamen(HandlerInput input) {
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
-        if(input.matches(intentName(Intentnamen.YESINTENT)))
-            return pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input,requestIntent);
-        else {
+        SlotConfirmationStatus status = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getConfirmationStatus();
+        if (status == SlotConfirmationStatus.CONFIRMED){
+            return pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(input, requestIntent);
+        } else if (status == SlotConfirmationStatus.NONE){
+            String spielername = (String) input.getAttributesManager().getSessionAttributes().get(Parameter.VALID_SPIELERNAME);
+            return frageObSpielernameRichtigVerstandenWurde(input, spielername,requestIntent);
+        } else {
             //Change Context
-            input = changeContext(input,Context.PLAYER_NAME_ASK);
-            Map<String,Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
+            input = changeContext(input, Context.PLAYER_NAME_ASK);
+            Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
             String[] spielerNamen = readPlayers(sessionAttribute);
             int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
-            return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 1, requestIntent);
+            return frageSpielerNamen(input, neuerSpieler + 1, requestIntent);
+            //return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 1, requestIntent);
         }
     }
 
     private Optional<Response> pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(HandlerInput input, Intent requestIntent) {
         System.out.println("Session Attribute nicht leer Zweig");
 
-        Map<String,Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
+        Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
 
         //Attribute auslesen
         String neuerSpielerName = (String) sessionAttribute.get(Parameter.VALID_SPIELERNAME);
@@ -131,7 +133,7 @@ public class Spiellogik extends Hilfslogik {
         //Prüfe ob es so viele Namen wie Spieler gibt
         if (++zaehleSpieler < players) {
             //Ändere Context
-            input = changeContext(input,Context.PLAYER_NAME_ASK);
+            input = changeContext(input, Context.PLAYER_NAME_ASK);
 
             System.out.println("ZahleSpieler != Players Zweig");
             //Nummer des neuen Spielers ermitteln
@@ -141,11 +143,12 @@ public class Spiellogik extends Hilfslogik {
             //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
             input = neuenSpielerHinzufuegen(spielerNamen, sessionAttribute, neuerSpielerName, input);
             System.out.println("Frage neuen Spielernamen");
-            input = speichereNaechsteAktion(input,neuerSpieler+2);
-            return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 2, requestIntent);
+            input = speichereNaechsteAktion(input, neuerSpieler + 2);
+            return frageSpielerNamen(input, neuerSpieler + 2, requestIntent);
+            //return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 2, requestIntent);
         } else /*if (zaehleSpieler == players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null)*/ {
             //ändere Context
-            input = changeContext(input,Context.GAME);
+            input = changeContext(input, Context.GAME);
 
             System.out.println("ELSE Zweig Stringarray: " + sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
             input = neuenSpielerHinzufuegen(spielerNamen, sessionAttribute, neuerSpielerName, input);
@@ -156,7 +159,7 @@ public class Spiellogik extends Hilfslogik {
         }
     }
 
-    private Optional<Response> naechsteGameAktion(HandlerInput input){
+    private Optional<Response> naechsteGameAktion(HandlerInput input) {
         Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
         sessionAttribute = setSpielcounter(sessionAttribute);
         return ermittleNaechsteAktion(input, sessionAttribute);

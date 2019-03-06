@@ -11,8 +11,8 @@ public interface Intentnamen {
     String FALLBACKINTENT = "AMAZON.FallbackIntent";
 
     //Ja Nein
-    String YESINTENT = "AMAZON.YesIntent";
-    String NOINTENT = "AMAZON.NoIntent";
+    String YESINTENT = "JaIntent";//"AMAZON.YesIntent";
+    String NOINTENT = "NeinIntent";//"AMAZON.NoIntent";
 
     //Definierte Intents Namen
     String STARTGAMEINTENT = "StartGameIntent";

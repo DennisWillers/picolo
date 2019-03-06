@@ -26,13 +26,6 @@ public class Response {
                 .build();
     }
 
-    Optional<com.amazon.ask.model.Response> frageAnzahlSpielerYesIntent(HandlerInput input, Intent requestIntent) {
-        return input.getResponseBuilder()
-                .withSpeech(randomPlayerAnswer())
-                .withReprompt(randomPlayerAnswer())
-                .build();
-    }
-
     Optional<com.amazon.ask.model.Response> frageSpielerNamen(HandlerInput input, int spieler, Intent requestIntent) {
         return input.getResponseBuilder()
                 .withSpeech(askPlayerName() + spieler)
@@ -40,17 +33,10 @@ public class Response {
                 .build();
     }
 
-    Optional<com.amazon.ask.model.Response> frageSpielerNamenYesOrNoIntent(HandlerInput input, int spieler, Intent requestIntent) {
-        return input.getResponseBuilder()
-                .withSpeech(askPlayerName() + spieler)
-                .withReprompt(askPlayerName() + spieler)
-                .build();
-    }
-
-    Optional<com.amazon.ask.model.Response> frageObSpielernameRichtigVerstandenWurde(HandlerInput input, String spielername) {
+    Optional<com.amazon.ask.model.Response> frageObSpielernameRichtigVerstandenWurde(HandlerInput input, String spielername, Intent requestIntent) {
         return input.getResponseBuilder()
                 .withSpeech(randomSpielernameVerstandenAntwort(spielername))
-                .withReprompt(randomSpielernameVerstandenAntwort(spielername))
+                .addConfirmSlotDirective(Parameter.NEUER_SPIELER_NAME,requestIntent)
                 .build();
     }
 
