@@ -22,22 +22,22 @@
   {
     "id": 5,
     "type": "CHALLENGE",
-    "template": "Trink vier Schlücke, wenn du lieber eine Katze als einen Hund hättest. "
+    "template": "{1}, trinke vier Schlücke, wenn du lieber eine Katze als einen Hund hättest. "
   },
   {
     "id": 6,
     "type": "GAME",
-    "template": "Wir spielen jetzt das Spiel: \"Alles, was die Schildkröte Franklin machen kann\". Derjenige, der etwas wiederholt oder nichts mehr weiß, trinkt 4 Schlücke. {1} beginnt. "
+    "template": "{0}, wenn du den Spruch \"Ist der Finger oben, wird man dich loben\" und die richtige Serie dazu kennst, dann hattest eine tolle Kindheit. {1} und {2} trinken dafür zwei Schlücke. "
   },
   {
     "id": 7,
     "type": "CHALLENGE",
-    "template": "Alle, die blaue Augen haben, trinken einen Schluck. "
+    "template": "Wenn {0},{1} oder {2} blaue Augen hat, trinken die drei für jedes Augenpaar einen Schluck. "
   },
   {
     "id": 8,
     "type": "CHALLENGE",
-    "template": "Alle, die Angst vor Spinnen haben, trinken einen Schluck. "
+    "template": "Wenn {0} oder {1} Angst vor Spinnen hat, trinken beide einen Schluck. "
   },
   {
     "id": 9,
@@ -47,7 +47,7 @@
   {
     "id": 10,
     "type": "CHALLENGE",
-    "template": "{0} , wähle, wer 1 Schluck aus deinem Glas trinken soll. "
+    "template": "{0} , wähle, wer einen Schluck aus deinem Glas trinken soll. "
   },
   {
     "id": 11,
@@ -92,12 +92,12 @@
   {
     "id": 19,
     "type": "CHALLENGE",
-    "template": "{0} ist der Trinkbuddy von {1}. "
+    "template": "{0} muss aus dem Glas von {1} trinken, wobei {1} sein Glas in der Hand halten muss. "
   },
   {
     "id": 20,
     "type": "CHALLENGE",
-    "template": "Alle die gestern schon getrunken haben, trinken 2 Schlücke. "
+    "template": "Alle die gestern schon getrunken haben, trinken zwei Schlücke. "
   },
   {
     "id": 21,
@@ -117,17 +117,17 @@
   {
     "id": 24,
     "type": "CHALLENGE",
-    "template": "Die letzte Person, die ihre Füße vom Boden hebt,trinkt zwei Schlücke. "
+    "template": "Die letzte Person, die ihre Füße vom Boden hebt, trinkt zwei Schlücke. "
   },
   {
     "id": 25,
     "type": "CHALLENGE",
-    "template": "{0}, schließ die Augen und sag, welche Augenfarbe {1} hat, wenn du richtig tippst verteile zwei Schlücke, ansonsten trink sie Selbst. "
+    "template": "{0}, schließ die Augen und sag, welche Augenfarbe {1} hat, wenn du richtig tippst verteile zwei Schlücke, ansonsten trink sie selbst. "
   },
   {
     "id": 26,
     "type": "GAME",
-    "template": "{0}, sag etwas, das du magst, alle Spieler, die das nicht mögen, trinken drei Schlüke. Wenn niemand trinkt, trinkst du zwei Schlücke "
+    "template": "{0}, sag etwas, dass du magst. Alle Spieler, die das nicht mögen, trinken drei Schlüke. Wenn niemand trinkt, trinkst du zwei Schlücke. "
   },
   {
     "id": 27,
@@ -137,7 +137,7 @@
   {
     "id": 28,
     "type": "EX",
-    "template": "Alle die ein S im Vornamen haben, trinken auf EX. "
+    "template": "{0} muss gegen {1} rechnen. Der Verlierer muss sein Glas austrinken. Wie viel ist 12 mal 13?"
   },
   {
     "id": 29,
@@ -147,7 +147,7 @@
   {
     "id": 30,
     "type": "CHALLENGE",
-    "template": "{0}, sag das Alphabet rückwärts ohne Fehler in 20 Sekunden auf, ansonsten trink zwei Schlücke. "
+    "template": "{0}, sag das Alphabet rückwärts ohne Fehler in 90 Sekunden auf, ansonsten trink zwei Schlücke. "
   },
   {
     "id": 31,
@@ -213,5 +213,50 @@
     "id": 43,
     "type": "CHALLENGE",
     "template": "Alle Kinder der 90er trinken einen Schluck. "
+  },
+  {
+    "id": 44,
+    "type": "CHALLENGE",
+    "template": "{0} muss trinken, wenn {1} Einzelkind ist. "
+  },
+  {
+    "id": 45,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} heute schon Netflix geguckt hat, muss {1} trinken, ansonsten trinkt {2}. "
+  },
+  {
+    "id": 46,
+    "type": "CHALLENGE",
+    "template": "{0} muss trinken, wenn {1} Geschwister hat. "
+  },
+  {
+    "id": 47,
+    "type": "CHALLENGE",
+    "template": "Wer als erster seine Nase berührt, kann jetzt einen Schluck trinken. Und alle anderen die es nun gemacht haben auch. "
+  },
+  {
+    "id": 48,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} diese Woche nicht trainieren war, darf er mit {1} einen Trinken. "
+  },
+  {
+    "id": 49,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} die Namen von allen Mitspielern kennt gibt es eine trinkfreie Runde, ansonsten trinken alle. "
+  },
+  {
+    "id": 50,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} weiß was die offizielle Berufs-, Ausbildungs- oder Studienbezeichnung von {1} ist, dann trinkt {2} drei Schlücke. "
+  },
+  {
+    "id": 51,
+    "type": "GAME",
+    "template": "{0} denkt sich eine Zahl zwischen eins und zehn aus. {1} und {2} versuchen diese zu erraten. Der Verlierer trinkt drei Schlücke. "
+  },
+  {
+    "id": 52,
+    "type": "CHALLENGE",
+    "template": "{0} muss sagen wo {1} zuletzt im Urlaub war, ansonsten dürfen beide einen trinken. "
   }
 ]
