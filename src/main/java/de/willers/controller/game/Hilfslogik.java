@@ -219,11 +219,6 @@ public class Hilfslogik extends de.willers.controller.game.Response {
             case Context.START:
             case Context.PLAYER_NAME_CONFIRM:
                 return spiellogik.pruefeContext(input);
-            /*case Context.PLAYER_COUNT:
-                input = changeContext(input,Context.START);
-                return spiellogik.pruefeContext(input);
-            case Context.PLAYER_NAME_ASK:
-                return new WiederholeIntentHandler().handle(input);*/
             default:
                 return spiellogik.pruefeContext(input);
         }
