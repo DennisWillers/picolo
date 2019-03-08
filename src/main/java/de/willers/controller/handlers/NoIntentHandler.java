@@ -25,10 +25,10 @@ public class NoIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        if(input.getAttributesManager().getSessionAttributes().get(Parameter.CONTEXT).equals(Context.START)){
+        String context = (String) input.getAttributesManager().getSessionAttributes().get(Parameter.CONTEXT);
+        if(context.equals(Context.START) || context.equals(Context.GAME)){
             return new CancelandStopIntentHandler().handle(input);
         } else {
-            Spiellogik spiellogik = new Spiellogik();
             return new Hilfslogik().sinnhaftigkeitDesEinsatzesVonJaNeinAnpassen(input);
         }
     }

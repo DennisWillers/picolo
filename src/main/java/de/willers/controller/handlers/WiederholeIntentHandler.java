@@ -44,7 +44,6 @@ public class WiederholeIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(Text.WIEDERHOLEN_FEHLER)
                 .withSimpleCard(Card.TITEL,Text.WIEDERHOLEN_FEHLER)
-                .withReprompt(Text.WIEDERHOLEN_FEHLER)
                 .build();
     }
 

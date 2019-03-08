@@ -83,16 +83,22 @@ public class Spiellogik extends Hilfslogik {
     private Optional<Response> verstandenenNamenZurUeberpruefungResponse(HandlerInput input) {
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         String verstandenerSpielername = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getValue();
-
-        if(verstandenerSpielername == null){
-            return getAktuelleZuFragendeSpielerposition(input, requestIntent);
-        }
-        //Context ändern
-        input = changeContext(input, Context.PLAYER_NAME_CONFIRM);
-
-        input = changeSessionParameter(input, Parameter.VALID_SPIELERNAME, verstandenerSpielername);
         System.out.println("ValidSpielername: " + input.getAttributesManager().getSessionAttributes().get(Parameter.VALID_SPIELERNAME));
-        return frageObSpielernameRichtigVerstandenWurde(input, verstandenerSpielername, requestIntent);
+        if(verstandenerSpielername == null || verstandenerSpielername.equals("null")){
+            int neuerSpieler;
+            if(input.getAttributesManager().getSessionAttributes().get(Parameter.SPIELER_NAMEN) == null){
+                neuerSpieler = 0;
+            } else {
+                String[] spielerNamen = readPlayers(input.getAttributesManager().getSessionAttributes());
+                neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
+            }
+            return frageSpielerNamen(input,neuerSpieler+1,requestIntent);
+        } else {
+            input = changeSessionParameter(input, Parameter.VALID_SPIELERNAME, verstandenerSpielername);
+            //Context ändern
+            input = changeContext(input, Context.PLAYER_NAME_CONFIRM);
+            return frageObSpielernameRichtigVerstandenWurde(input, verstandenerSpielername, requestIntent);
+        }
     }
 
     private Optional<Response> pruefeVerstandenenSpielernamen(HandlerInput input) {
