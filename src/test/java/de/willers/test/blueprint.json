@@ -1,0 +1,267 @@
+[
+  {
+    "id": 1,
+    "type": "CHALLENGE",
+    "template": "{0}, wenn deine Füße kleiner sind, als die von {1}, trink zwei Schlücke, ansonsten verteil sie. "
+  },
+  {
+    "id": 2,
+    "type": "GAME",
+    "template": "{0} beginnt mit \"Ich packe meinen Koffer...\". Wer als erstes einen Fehler macht, trinkt vier Schlücke. "
+  },
+  {
+    "id": 3,
+    "type": "GAME",
+    "template": "Lieber ein ungewöhnliches Haus an einem gewöhnlichen Ort haben oder anders herum? Stimmt alle gleichzeitig ab. Die Verlierer trinken zwei Schlücke. "
+  },
+  {
+    "id": 4,
+    "type": "CHALLENGE",
+    "template": "{0}, du musst entscheiden: wer von {1} und {2} ist deiner Meinung nach der beliebtere Spieler? Dieser Spieler verteilt zwei Schlücke. "
+  },
+  {
+    "id": 5,
+    "type": "CHALLENGE",
+    "template": "{1}, trinke vier Schlücke, wenn du lieber eine Katze als einen Hund hättest. "
+  },
+  {
+    "id": 6,
+    "type": "GAME",
+    "template": "{0}, wenn du den Spruch \"Ist der Finger oben, wird man dich loben\" und die richtige Serie dazu kennst, dann hattest eine tolle Kindheit. {1} und {2} trinken dafür zwei Schlücke. "
+  },
+  {
+    "id": 7,
+    "type": "CHALLENGE",
+    "template": "Wenn {0},{1} oder {2} blaue Augen hat, trinken die drei für jedes Augenpaar einen Schluck. "
+  },
+  {
+    "id": 8,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} oder {1} Angst vor Spinnen hat, trinken beide einen Schluck. "
+  },
+  {
+    "id": 9,
+    "type": "CHALLENGE",
+    "template": "Alle Haie, die in der Finanzbranche arbeiten, trinken zwei Schlücke. "
+  },
+  {
+    "id": 10,
+    "type": "CHALLENGE",
+    "template": "{0} , wähle, wer einen Schluck aus deinem Glas trinken soll. "
+  },
+  {
+    "id": 11,
+    "type": "CHALLENGE",
+    "template": "{1} gib {0} eine Aufgaben. Wenn diese Aufgabe gemacht wurde, darf die Person vier Schlücke verteilen. "
+  },
+  {
+    "id": 12,
+    "type": "CHALLENGE",
+    "template": "Jeder der eine Brille trägt, trinkt zwei Schlücke. "
+  },
+  {
+    "id": 13,
+    "type": "CHALLENGE",
+    "template": "Derjenige, der am wenigstens getrunken hat, trinkt drei Schlücke. "
+  },
+  {
+    "id": 14,
+    "type": "CHALLENGE",
+    "template": "Derjenige, der am meisten getrunkten hat, trinkt nochmal drei Schlücke. "
+  },
+  {
+    "id": 15,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} oder {1} einen Bart hat, dann muss er drei Schlücke trinken. "
+  },
+  {
+    "id": 16,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} jünger als {1} ist, dann trink einen Schluck. "
+  },
+  {
+    "id": 17,
+    "type": "EX",
+    "template": "{2}, Entscheide, ob {1} oder {0} sein Glas auf EX trinken soll. "
+  },
+  {
+    "id": 18,
+    "type": "GAME",
+    "template": "Wir spielen jetzt ein Themenspiel. Der Verlierer trinkt 4 Schlücke. \"Nennt mir Aufgaben im Haushalt\", {0} beginnt. "
+  },
+  {
+    "id": 19,
+    "type": "CHALLENGE",
+    "template": "{0} muss aus dem Glas von {1} trinken, wobei {1} sein Glas in der Hand halten muss. "
+  },
+  {
+    "id": 20,
+    "type": "CHALLENGE",
+    "template": "Alle die gestern schon getrunken haben, trinken zwei Schlücke. "
+  },
+  {
+    "id": 21,
+    "type": "CHALLENGE",
+    "template": "{0} du darfst so viele Schlücke an {1} verteilen wie du willst. "
+  },
+  {
+    "id": 22,
+    "type": "GAME",
+    "template": "Wir spielen eine Runde Wahrheit oder Pflich im Uhrzeigersinn. {0} beginnt. "
+  },
+  {
+    "id": 23,
+    "type": "GAME",
+    "template": "Wir spielen jetzt eine Runde 'Ich habe noch nie'. {0} beginnt. "
+  },
+  {
+    "id": 24,
+    "type": "CHALLENGE",
+    "template": "Die letzte Person, die ihre Füße vom Boden hebt, trinkt zwei Schlücke. "
+  },
+  {
+    "id": 25,
+    "type": "CHALLENGE",
+    "template": "{0}, schließ die Augen und sag, welche Augenfarbe {1} hat, wenn du richtig tippst verteile zwei Schlücke, ansonsten trink sie selbst. "
+  },
+  {
+    "id": 26,
+    "type": "GAME",
+    "template": "{0}, sag etwas, dass du magst. Alle Spieler, die das nicht mögen, trinken drei Schlüke. Wenn niemand trinkt, trinkst du zwei Schlücke. "
+  },
+  {
+    "id": 27,
+    "type": "CHALLENGE",
+    "template": "{0}, wähle, wer zwei Schlücke aus dem Glas von {1} trinkt. "
+  },
+  {
+    "id": 28,
+    "type": "EX",
+    "template": "{0} muss gegen {1} rechnen. Der Verlierer muss sein Glas austrinken. Wie viel ist 12 mal 13?"
+  },
+  {
+    "id": 29,
+    "type": "CHALLENGE",
+    "template": "Alle die Vergeben sind, geben drei Schlücke an eine einzige Person ab. "
+  },
+  {
+    "id": 30,
+    "type": "CHALLENGE",
+    "template": "{0}, sag das Alphabet rückwärts ohne Fehler in 90 Sekunden auf, ansonsten trink zwei Schlücke. "
+  },
+  {
+    "id": 31,
+    "type": "CHALLENGE",
+    "template": "{0}, mach 6 richtige Kniebeugen und trinke nach jeder einen Schluck. "
+  },
+  {
+    "id": 32,
+    "type": "CHALLENGE",
+    "template": "{0}, wenn dein Handy in deiner Tasche ist, trinke vier Schlücke, ansonsten verteile drei. "
+  },
+  {
+    "id": 33,
+    "type": "CHALLENGE",
+    "template": "{0}, trinke fünf Schlücke aus dem Glas von {1}. "
+  },
+  {
+    "id": 34,
+    "type": "CHALLENGE",
+    "template": "Alle Personen, die älter als {0} sind, trinken 2 Schlücke. "
+  },
+  {
+    "id": 35,
+    "type": "CHALLENGE",
+    "template": "Alle Personen, die jünger als {0} sind, trinken 2 Schlücke. "
+  },
+  {
+    "id": 36,
+    "type": "GAME",
+    "template": "{1}, spielt eine Runde Schere, Stein, Papier gege {0}, der Verlierer trinkt 4 Schlücke "
+  },
+  {
+    "id": 37,
+    "type": "CHALLENGE",
+    "template": "Trinkt für jeden Studenten, der mitspielt einen Schluck. "
+  },
+  {
+    "id": 38,
+    "type": "EX",
+    "template": "Alle Singles exen. "
+  },
+  {
+    "id": 39,
+    "type": "EX",
+    "template": "Alle, die in einer Beziehung sind exen. "
+  },
+  {
+    "id": 40,
+    "type": "CHALLENGE",
+    "template": "Alle, die sich Montags schon aufs nächste Wochenende freuen trinken zwei Schlücke. "
+  },
+  {
+    "id": 41,
+    "type": "CHALLENGE",
+    "template": "Die kleinste Person im Raum trinkt zwei Schlücke. "
+  },
+  {
+    "id": 42,
+    "type": "CHALLENGE",
+    "template": "Die größte Person im Raum trinkt drei Schlücke. "
+  },
+  {
+    "id": 43,
+    "type": "CHALLENGE",
+    "template": "Alle Kinder der 90er trinken einen Schluck. "
+  },
+  {
+    "id": 44,
+    "type": "CHALLENGE",
+    "template": "{0} muss trinken, wenn {1} Einzelkind ist. "
+  },
+  {
+    "id": 45,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} heute schon Netflix geguckt hat, muss {1} trinken, ansonsten trinkt {2}. "
+  },
+  {
+    "id": 46,
+    "type": "CHALLENGE",
+    "template": "{0} muss trinken, wenn {1} Geschwister hat. "
+  },
+  {
+    "id": 47,
+    "type": "CHALLENGE",
+    "template": "Wer als erster seine Nase berührt, kann jetzt einen Schluck trinken. Und alle anderen die es nun gemacht haben auch. "
+  },
+  {
+    "id": 48,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} diese Woche nicht trainieren war, darf er mit {1} einen Trinken. "
+  },
+  {
+    "id": 49,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} die Namen von allen Mitspielern kennt gibt es eine trinkfreie Runde, ansonsten trinken alle. "
+  },
+  {
+    "id": 50,
+    "type": "CHALLENGE",
+    "template": "Wenn {0} weiß was die offizielle Berufs-, Ausbildungs- oder Studienbezeichnung von {1} ist, dann trinkt {2} drei Schlücke. "
+  },
+  {
+    "id": 51,
+    "type": "GAME",
+    "template": "{0} denkt sich eine Zahl zwischen eins und zehn aus. {1} und {2} versuchen diese zu erraten. Der Verlierer trinkt drei Schlücke. "
+  },
+  {
+    "id": 52,
+    "type": "CHALLENGE",
+    "template": "{0} muss sagen wo {1} zuletzt im Urlaub war, ansonsten dürfen beide einen trinken. "
+  },
+  {
+    "id": 900,
+    "type": "KINGSCUP",
+    "template": "{0} ist der Trinkbudy von {1}. "
+  }
+]
