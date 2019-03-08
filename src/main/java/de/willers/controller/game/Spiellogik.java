@@ -84,7 +84,7 @@ public class Spiellogik extends Hilfslogik {
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         String verstandenerSpielername = requestIntent.getSlots().get(Parameter.NEUER_SPIELER_NAME).getValue();
         System.out.println("ValidSpielername: " + input.getAttributesManager().getSessionAttributes().get(Parameter.VALID_SPIELERNAME));
-        if(verstandenerSpielername == null || verstandenerSpielername.equals("null")){
+        if(verstandenerSpielername == null){
             int neuerSpieler;
             if(input.getAttributesManager().getSessionAttributes().get(Parameter.SPIELER_NAMEN) == null){
                 neuerSpieler = 0;
@@ -114,7 +114,6 @@ public class Spiellogik extends Hilfslogik {
             //Change Context
             input = changeContext(input, Context.PLAYER_NAME_ASK);
             return getAktuelleZuFragendeSpielerposition(input, requestIntent);
-            //return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 1, requestIntent);
         }
     }
 
@@ -149,7 +148,6 @@ public class Spiellogik extends Hilfslogik {
             System.out.println("Frage neuen Spielernamen");
             input = speichereNaechsteAktion(input, neuerSpieler + 2);
             return frageSpielerNamen(input, neuerSpieler + 2, requestIntent);
-            //return frageSpielerNamenYesOrNoIntent(input, neuerSpieler + 2, requestIntent);
         } else /*if (zaehleSpieler == players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null)*/ {
             //ändere Context
             input = changeContext(input, Context.GAME);
