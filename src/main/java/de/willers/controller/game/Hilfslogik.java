@@ -76,6 +76,13 @@ public class Hilfslogik extends de.willers.controller.game.Response {
         return zaehleSpieler;
     }
 
+    Optional<Response> getAktuelleZuFragendeSpielerposition(HandlerInput input, Intent requestIntent) {
+        Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
+        String[] spielerNamen = readPlayers(sessionAttribute);
+        int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
+        return frageSpielerNamen(input,neuerSpieler+1,requestIntent);
+    }
+
     int zaehleSpieler(String[] spielerNamen) {
         int zaehleSpieler = 0;
         for (String s :
@@ -219,11 +226,6 @@ public class Hilfslogik extends de.willers.controller.game.Response {
             case Context.START:
             case Context.PLAYER_NAME_CONFIRM:
                 return spiellogik.pruefeContext(input);
-            /*case Context.PLAYER_COUNT:
-                input = changeContext(input,Context.START);
-                return spiellogik.pruefeContext(input);
-            case Context.PLAYER_NAME_ASK:
-                return new WiederholeIntentHandler().handle(input);*/
             default:
                 return spiellogik.pruefeContext(input);
         }

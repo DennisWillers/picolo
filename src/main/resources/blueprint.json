@@ -52,7 +52,7 @@
   {
     "id": 11,
     "type": "CHALLENGE",
-    "template": "{1} gib {0} eine Aufgaben. Wenn diese Aufgabe gemacht wurde, darf die Person vier Schlücke verteilen. "
+    "template": "{1} gib {0} eine Aufgabe. Wenn diese Aufgabe gemacht wurde, darf die Person vier Schlücke verteilen. "
   },
   {
     "id": 12,
@@ -62,7 +62,7 @@
   {
     "id": 13,
     "type": "CHALLENGE",
-    "template": "Derjenige, der am wenigstens getrunken hat, trinkt drei Schlücke. "
+    "template": "Derjenige, der am wenigsten getrunken hat, trinkt drei Schlücke. "
   },
   {
     "id": 14,
@@ -127,7 +127,7 @@
   {
     "id": 26,
     "type": "GAME",
-    "template": "{0}, sag etwas, dass du magst. Alle Spieler, die das nicht mögen, trinken drei Schlüke. Wenn niemand trinkt, trinkst du zwei Schlücke. "
+    "template": "{0}, sag etwas, dass du magst. Alle Spieler, die das nicht mögen, trinken drei Schlücke. Wenn niemand trinkt, trinkst du zwei Schlücke. "
   },
   {
     "id": 27,
