@@ -57,7 +57,6 @@ public class Spiellogik extends Hilfslogik {
     }
 
     private Optional<Response> pruefeSessionAttributSpielerNamenVorhandenResponse(HandlerInput input, Intent requestIntent) {
-        System.out.println("SessionAttribute Zweig");
         //Frage nach den Namen der Spieler
 
         Map<String, Object> sessionAttribute = getSessionAttributes(input);
@@ -68,7 +67,6 @@ public class Spiellogik extends Hilfslogik {
             //Context ändern
             input = changeContext(input, Context.PLAYER_NAME_ASK);
             sessionAttribute = getSessionAttributes(input);
-            System.out.println("Session Attribute leer Zweig");
             //Wenn sessionAttribute leer sind
             initialSessionAttribute(input, requestIntent, sessionAttribute);
             input = speichereNaechsteAktion(input, 1);
@@ -114,8 +112,6 @@ public class Spiellogik extends Hilfslogik {
     }
 
     private Optional<Response> pruefeObWeitereSpielernamenGeprueftWerdenMuessenResponse(HandlerInput input, Intent requestIntent) {
-        System.out.println("Session Attribute nicht leer Zweig");
-
         Map<String, Object> sessionAttribute = input.getAttributesManager().getSessionAttributes();
 
         //Attribute auslesen
@@ -126,29 +122,21 @@ public class Spiellogik extends Hilfslogik {
 
         //Ermittle die Anzahl der ermittelnden Namen
         int zaehleSpieler = zaehleSpieler(spielerNamen);
-        System.out.println("ZaehleSpieler = " + zaehleSpieler);
-        System.out.println("players = " + players);
 
         //Prüfe ob es so viele Namen wie Spieler gibt
         if (++zaehleSpieler < players) {
             //Ändere Context
             input = changeContext(input, Context.PLAYER_NAME_ASK);
-
-            System.out.println("ZahleSpieler != Players Zweig");
             //Nummer des neuen Spielers ermitteln
             int neuerSpieler = platzDesNeuenSpielersErmitteln(spielerNamen);
-            System.out.println("NeuerSpielerInt: " + neuerSpieler);
 
             //Neuen Spieler an ersten zu findenden null Stelle hinzufügen
             input = neuenSpielerHinzufuegen(spielerNamen, sessionAttribute, neuerSpielerName, input);
-            System.out.println("Frage neuen Spielernamen");
             input = speichereNaechsteAktion(input, neuerSpieler + 2);
             return frageSpielerNamen(input, neuerSpieler + 2, requestIntent);
         } else /*if (zaehleSpieler == players && sessionAttribute.get(Parameter.SPIELCOUNTER) == null)*/ {
             //ändere Context
             input = changeContext(input, Context.GAME);
-
-            System.out.println("ELSE Zweig Stringarray: " + sessionAttribute.get(Parameter.SPIELER_NAMEN).toString());
             input = neuenSpielerHinzufuegen(spielerNamen, sessionAttribute, neuerSpielerName, input);
             sessionAttribute = input.getAttributesManager().getSessionAttributes();
             sessionAttribute = setSpielcounter(sessionAttribute);
