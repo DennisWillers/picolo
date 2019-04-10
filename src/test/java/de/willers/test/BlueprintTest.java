@@ -4,7 +4,7 @@ import de.willers.controller.picolo.Challenge;
 import de.willers.controller.picolo.ChallengeMaster;
 import org.junit.Test;
 
-public class BlueprintTest {
+/*public class BlueprintTest {
     @Test
     public void testBlueprint(){
         String[] players = {"Dennis","Tim","Simon"};
@@ -21,4 +21,4 @@ public class BlueprintTest {
             e.printStackTrace();
         }
     }
-}
+}*/

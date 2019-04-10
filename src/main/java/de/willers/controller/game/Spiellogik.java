@@ -6,13 +6,10 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.SlotConfirmationStatus;
 import de.willers.model.Context;
-import de.willers.model.Intentnamen;
 import de.willers.model.Parameter;
 
 import java.util.Map;
 import java.util.Optional;
-
-import static com.amazon.ask.request.Predicates.intentName;
 
 /**
  * Von Dennis Willers (A13A316) am 28.01.2019 erstellt
@@ -49,7 +46,7 @@ public class Spiellogik extends Hilfslogik {
         Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
         //Frage nach der Anzahl der Spieler
         String anzahlSpieler = requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue();
-        if ((anzahlSpieler == null || anzahlSpieler.equals("?")) || Integer.parseInt(anzahlSpieler) <= 0) {
+        if ((anzahlSpieler == null || anzahlSpieler.equals("?")) || parseStringToInt(anzahlSpieler) <= 0) {
             System.out.println("Ermittle Anzahl Spieler");
             return frageAnzahlSpieler(input, requestIntent);
         } else if (anzahlSpieler.equals("1")) {
@@ -62,7 +59,6 @@ public class Spiellogik extends Hilfslogik {
     private Optional<Response> pruefeSessionAttributSpielerNamenVorhandenResponse(HandlerInput input, Intent requestIntent) {
         System.out.println("SessionAttribute Zweig");
         //Frage nach den Namen der Spieler
-
 
         Map<String, Object> sessionAttribute = getSessionAttributes(input);
         //Prüfe das sessionAttribut nicht leer ist

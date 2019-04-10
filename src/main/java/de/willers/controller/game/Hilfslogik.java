@@ -37,7 +37,7 @@ public class Hilfslogik extends de.willers.controller.game.Response {
     }
 
     HandlerInput initialSessionAttribute(HandlerInput input, Intent requestIntent, Map<String, Object> sessionAttribute) {
-        int players = Integer.parseInt(requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue());
+        int players = parseStringToInt(requestIntent.getSlots().get(Parameter.ANZAHL_SPIELER).getValue());
         sessionAttribute.put(Parameter.ANZAHL_SPIELER, players);
         String[] spielerNamen = new String[players];
         sessionAttribute.put(Parameter.ANZAHL_SPIELER, players);
@@ -228,6 +228,16 @@ public class Hilfslogik extends de.willers.controller.game.Response {
                 return spiellogik.pruefeContext(input);
             default:
                 return spiellogik.pruefeContext(input);
+        }
+    }
+
+    int parseStringToInt(String text){
+        try {
+            Double kommaZahl = Double.parseDouble(text);
+            int zahl = (int) Math.round(kommaZahl);
+            return zahl;
+        } catch (Exception e){
+            return -1;
         }
     }
 }
