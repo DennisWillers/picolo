@@ -3,6 +3,7 @@ package de.willers.controller.handlers;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import de.willers.controller.game.Hilfslogik;
 import de.willers.model.Intentnamen;
 import de.willers.view.Card;
 import de.willers.view.Text;
@@ -19,6 +20,7 @@ public class CancelandStopIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        new Hilfslogik().setSpielstand(input);
         return input.getResponseBuilder()
                 .withSpeech(Text.STOP_SSML)
                 .withSimpleCard(Card.TITEL, Text.STOP)

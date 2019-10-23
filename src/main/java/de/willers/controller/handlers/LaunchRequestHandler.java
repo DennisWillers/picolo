@@ -23,13 +23,21 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        Map<String, Object> sessionAttribute = new Hilfslogik().getSessionAttributes(input);
-        sessionAttribute.put(Parameter.CONTEXT, Context.START);
+        Hilfslogik hilfslogik = new Hilfslogik();
+        Map<String, Object> sessionAttribute = hilfslogik.getSessionAttributes(input);
+        String speech;
+        if(hilfslogik.existiertSpielstand(input)){
+            sessionAttribute.put(Parameter.CONTEXT, Context.LOAD_GAME);
+            speech = Text.PICOLO_SPIELSTAND_LADEN;
+        } else {
+            sessionAttribute.put(Parameter.CONTEXT, Context.START);
+            speech = Text.PICOLO_START;
+        }
         input.getAttributesManager().setSessionAttributes(sessionAttribute);
 
         return input.getResponseBuilder()
-                .withSpeech(Text.PICOLO_START)
-                .withReprompt(Text.PICOLO_START)
+                .withSpeech(speech)
+                .withReprompt(speech)
                 .build();
     }
 

@@ -10,6 +10,7 @@ public interface Text {
     String FALLBACK      = "Leider konnte der Herr dich nicht verstehen ";
 
     String PICOLO_START = "Willkommen bei Picolo! Möchtest du ein neues Spiel starten? ";
+    String PICOLO_SPIELSTAND_LADEN = "Willkommen zurück bei Picolo! Möchtest du das letzte Spiel fortsetzen? ";
     String[] ANZAHL_SPIELER = {
             "Wie viele Spieler spielen mit?",
             "Nenne mir die Anzahl der teilnehmenden Spieler",

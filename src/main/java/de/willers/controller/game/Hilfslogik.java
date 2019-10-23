@@ -18,6 +18,33 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class Hilfslogik extends de.willers.controller.game.Response {
+    private static Map<String,HandlerInput> spielstand = new HashMap<>();
+
+    public boolean existiertSpielstand (HandlerInput input) {
+        String userId = input.getRequestEnvelope().getSession().getUser().getUserId();
+        if (spielstand.containsKey(userId)){
+            return true;
+        } else {
+            spielstand.put(userId,input);
+            return false;
+        }
+    }
+
+    public HandlerInput getSpielstand (HandlerInput input) {
+        String userId = input.getRequestEnvelope().getSession().getUser().getUserId();
+        if (spielstand.containsKey(userId)){
+            return spielstand.get(userId);
+        } else {
+            spielstand.put(userId,input);
+            return input;
+        }
+    }
+
+    public void setSpielstand (HandlerInput input) {
+        String userId = input.getRequestEnvelope().getSession().getUser().getUserId();
+        spielstand.replace(userId,input);
+    }
+
     public Map<String, Object> getSessionAttributes(HandlerInput input) {
         Map<String, Object> sessionAttribute = new HashMap<>();
         Map<String, Object> inputSessionAttribute = input.getAttributesManager().getSessionAttributes();

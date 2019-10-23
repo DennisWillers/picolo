@@ -6,6 +6,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.SlotConfirmationStatus;
 import de.willers.model.Context;
+import de.willers.model.Intentnamen;
 import de.willers.model.Parameter;
 
 import java.util.Map;
@@ -29,6 +30,8 @@ public class Spiellogik extends Hilfslogik {
                 input = changeContext(input, Context.PLAYER_COUNT);
                 System.out.println("Ermittle Anzahl Spieler");
                 return frageAnzahlSpieler(input, requestIntent);
+            case Context.LOAD_GAME:
+                return pruefeObSpielstandGeladenWerdenSoll(input);
             case Context.PLAYER_COUNT:
                 return pruefeAnzahlDerSpielerGegebenResponse(input);
             case Context.PLAYER_NAME_ASK:
@@ -39,6 +42,18 @@ public class Spiellogik extends Hilfslogik {
                 return naechsteGameAktion(input);
             default:
                 return pruefeAnzahlDerSpielerGegebenResponse(input);
+        }
+    }
+
+    private Optional<Response> pruefeObSpielstandGeladenWerdenSoll (HandlerInput input) {
+        Intent requestIntent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
+        if (requestIntent.getName().equals(Intentnamen.YESINTENT)) {
+            HandlerInput letzterSpielstand = new Hilfslogik().getSpielstand(input);
+            input.getAttributesManager().setSessionAttributes(letzterSpielstand.getAttributesManager().getSessionAttributes());
+            return pruefeContext(input);
+        } else {
+            input = changeContext(input, Context.PLAYER_COUNT);
+            return frageAnzahlSpieler(input, requestIntent);
         }
     }
 
